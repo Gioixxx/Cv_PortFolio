@@ -274,7 +274,11 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
                 result = `<span class="cmd-error">Sezione non trovata. Usa: ${validSections.join(', ')}</span>`;
             }
         } else if (command === 'download' && args[0] === 'cv') {
-            result = `<span class="cmd-accent">Download CV in corso...</span>\n<span class="cmd-muted">(Funzionalità da implementare con il tuo CV)</span>`;
+            const link = document.createElement('a');
+            link.href = 'cv.pdf';
+            link.download = 'cv.pdf';
+            link.click();
+            result = `<span class="cmd-accent">Download CV avviato...</span>`;
         } else if (command === 'theme') {
             if (args[0] === 'matrix' || args[0] === 'clean') {
                 ThemeManager.setTheme(args[0]);
@@ -310,8 +314,161 @@ const SmoothNav = {
     }
 };
 
+// Project Modal System
+const ProjectModal = {
+    projects: {
+        'multitenant': {
+            title: 'Sistema Gestionale Multi-Tenant',
+            tags: ['ASP.NET Core', 'Angular', 'PostgreSQL', 'CQRS', 'Event Sourcing'],
+            description: `
+                Una piattaforma enterprise completa progettata per gestire le operazioni di diverse aziende all'interno di un'unica istanza applicativa. 
+                L'obiettivo principale era garantire la totale separazione dei dati mantenendo la flessibilità di configurazione per ogni tenant.
+                
+                Il sistema gestisce l'intero ciclo di vita degli ordini, l'anagrafica clienti, la fatturazione elettronica e reportistica avanzata.
+                L'architettura a microservizi (modulare) permette di scalare le singole componenti in base al carico.
+            `,
+            features: [
+                'Separazione logica e fisica dei dati per Tenant',
+                'Sistema di autenticazione centralizzato (IdentityServer)',
+                'Gestione ruoli e permessi granulari',
+                'Audit Log immutabile per compliance legale',
+                'Motore di reportistica personalizzabile',
+                'API Gateway per integrazioni esterne'
+            ],
+            tech: [
+                '.NET 8', 'C#', 'Angular 17', 'TypeScript', 'RxJS', 
+                'PostgreSQL', 'Redis', 'RabbitMQ', 'Docker', 'Azure DevOps'
+            ]
+        },
+        'ftp-sftp': {
+            title: 'Sistema Integrazioni FTP/SFTP',
+            tags: ['ASP.NET Core', 'Hangfire', 'Docker', 'SFTP', 'AS400'],
+            description: `
+                Un middleware robusto per l'automazione del trasferimento file tra sistemi legacy (AS400, Mainframe) e piattaforme cloud moderne.
+                Il sistema risolve il problema della gestione manuale dei flussi dati, offrendo una dashboard centralizzata per il monitoraggio e la configurazione.
+                
+                Supporta protocolli multipli (FTP, SFTP, FTPS, SMB) e implementa logiche di retry intelligenti in caso di fallimento della rete.
+            `,
+            features: [
+                'Dashboard di monitoraggio in tempo reale',
+                'Configurazione flussi via UI (senza codice)',
+                'Sistema di notifiche proattivo (Email, Teams, Slack)',
+                'Gestione sicura delle credenziali (Vault)',
+                'Compressione e crittografia automatica dei file',
+                'Logging strutturato con ElasticSearch'
+            ],
+            tech: [
+                '.NET Core', 'Hangfire', 'SignalR', 'FluentValidation',
+                'Docker Compose', 'SSH.NET', 'Serilog', 'ELK Stack'
+            ]
+        },
+        'tabaccherie': {
+            title: 'Gestionale Tabaccherie',
+            tags: ['.NET / WPF', 'SQL Server', 'Entity Framework', 'MVVM'],
+            description: `
+                Software desktop per la gestione completa del punto vendita, ottimizzato per schermi touch-screen.
+                L'applicazione semplifica le operazioni quotidiane del tabaccaio, dall'emissione dello scontrino alla gestione automatica degli ordini verso i monopoli.
+                
+                Particolare attenzione è stata data all'usabilità (UX) per permettere operazioni veloci anche nei momenti di picco.
+            `,
+            features: [
+                'Interfaccia Touch-First ad alto contrasto',
+                'Lettura codici a barre e QR Code',
+                'Integrazione Registratori Telematici (RT)',
+                'Calcolo automatico aggio e ricavi',
+                'Algoritmo predittivo per il riordino scorte',
+                'Backup automatico in cloud'
+            ],
+            tech: [
+                'WPF', 'XAML', 'C#', 'MVVM Toolkit', 
+                'SQL Server LocalDB', 'Dapper', 'Syncfusion Controls'
+            ]
+        },
+        'password': {
+            title: 'Gestionale Password (Vault)',
+            tags: ['.NET Core', 'Blazor', 'IdentityServer', 'Cryptography'],
+            description: `
+                Soluzione di sicurezza per la gestione centralizzata delle credenziali aziendali. 
+                Progettata con architettura "Zero-Knowledge", garantisce che nemmeno gli amministratori del server possano accedere ai dati decifrati.
+                
+                Ideale per team di sviluppo che devono condividere accessi a server, database e servizi cloud in modo sicuro e tracciato.
+            `,
+            features: [
+                'Crittografia AES-256 Client-Side',
+                'Condivisione sicura tramite link a tempo',
+                'Autenticazione a due fattori (2FA)',
+                'Rilevamento password compromesse (HaveIBeenPwned)',
+                'Estensione browser per auto-fill',
+                'Integrazione Active Directory'
+            ],
+            tech: [
+                'Blazor WebAssembly', '.NET 8', 'IdentityServer4', 
+                'Web Crypto API', 'SignalR', 'SQL Server'
+            ]
+        }
+    },
+
+    init() {
+        this.bindEvents();
+    },
+
+    bindEvents() {
+        // Close on overlay click
+        const modal = document.getElementById('project-modal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) this.close();
+            });
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.close();
+        });
+    },
+
+    open(projectId) {
+        const project = this.projects[projectId];
+        if (!project) return;
+
+        // Populate content
+        document.getElementById('modal-title').textContent = project.title;
+        document.getElementById('modal-description').innerText = project.description;
+        
+        // Tags
+        const tagsContainer = document.getElementById('modal-tags');
+        tagsContainer.innerHTML = project.tags.map(tag => 
+            `<span class="project-tag">${tag}</span>`
+        ).join('');
+
+        // Features
+        const featuresContainer = document.getElementById('modal-features');
+        featuresContainer.innerHTML = project.features.map(feature => 
+            `<li>${feature}</li>`
+        ).join('');
+
+        // Tech
+        const techContainer = document.getElementById('modal-tech');
+        techContainer.innerHTML = project.tech.map(t => 
+            `<span class="tech-tag">${t}</span>`
+        ).join('');
+
+        // Show modal
+        const modal = document.getElementById('project-modal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    },
+
+    close() {
+        const modal = document.getElementById('project-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};
+
 // Initialize all features
 document.addEventListener('DOMContentLoaded', () => {
+    ProjectModal.init();
     ThemeManager.init();
     PortfolioFilter.init();
     Terminal.init();
@@ -319,4 +476,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add terminal hint
     console.log('%c Press L to open the terminal ', 'background: #ccff00; color: #0f0f11; padding: 5px 10px; border-radius: 4px; font-family: monospace;');
+
+    // Dynamic Year
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 });

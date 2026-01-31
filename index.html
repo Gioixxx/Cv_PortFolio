@@ -5,7 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gioele Mantello - Senior Full Stack Developer specializzato in .NET e Frontend Moderno. Costruisco applicazioni scalabili, pulite e orientate al prodotto.">
     <meta name="author" content="Gioele Mantello">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gioelemantello.dev/">
+    <meta property="og:title" content="Gioele Mantello — Senior Full Stack Developer">
+    <meta property="og:description" content="Senior Full Stack Developer specializzato in .NET e Frontend Moderno. Costruisco applicazioni scalabili, pulite e orientate al prodotto.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Gioele+Mantello+Portfolio">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gioelemantello.dev/">
+    <meta property="twitter:title" content="Gioele Mantello — Senior Full Stack Developer">
+    <meta property="twitter:description" content="Senior Full Stack Developer specializzato in .NET e Frontend Moderno. Costruisco applicazioni scalabili, pulite e orientate al prodotto.">
+    <meta property="twitter:image" content="https://via.placeholder.com/1200x630.png?text=Gioele+Mantello+Portfolio">
+
     <title>Gioele Mantello — Senior Full Stack Developer</title>
+    
+    <!-- Favicon (Emoji) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <!-- Fonts optimized -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -46,7 +70,7 @@
                 </p>
                 <div class="hero-cta">
                     <a href="#portfolio" class="btn btn-primary">Vedi Portfolio</a>
-                    <a href="#" class="btn btn-secondary">Scarica CV</a>
+                    <a href="cv.pdf" class="btn btn-secondary" download>Scarica CV</a>
                     <a href="#contatti" class="btn btn-outline">Contattami</a>
                 </div>
             </div>
@@ -200,7 +224,7 @@
                         <span class="project-tag">CQRS</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Dettagli</a>
+                        <button class="project-link" onclick="ProjectModal.open('multitenant')">Dettagli</button>
                     </div>
                 </div>
 
@@ -225,107 +249,57 @@
                         <span class="project-tag">SFTP</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Dettagli</a>
+                        <button class="project-link" onclick="ProjectModal.open('ftp-sftp')">Dettagli</button>
                     </div>
                 </div>
 
-                <div class="project-card visible" data-tags="react,dotnet">
+                <div class="project-card visible" data-tags="dotnet,wpf,sql">
                     <div class="project-header">
-                        <h3 class="project-title">Dashboard Operativa Real-Time</h3>
+                        <h3 class="project-title">Gestionale Tabaccherie</h3>
                     </div>
                     <p class="project-description">
-                        Interfaccia di monitoraggio real-time per processi aziendali critici.
-                        Visualizzazione stati, KPI, e alerting configurabile.
-                        Design accessibile con gestione ottimizzata degli stati UI.
+                        Software gestionale completo per tabaccherie con punto cassa touch-screen.
+                        Gestione automatizzata del magazzino, riordino tabacchi, e integrazione diretta
+                        con i sistemi Lottomatica e registratori di cassa telematici.
                     </p>
                     <div class="project-tech-details">
-                        <span class="tech-detail">WebSocket real-time</span>
-                        <span class="tech-detail">Grafici interattivi</span>
-                        <span class="tech-detail">Export PDF/Excel</span>
+                        <span class="tech-detail">Interfaccia Touch</span>
+                        <span class="tech-detail">Integrazione Fiscal Printer</span>
+                        <span class="tech-detail">Ordini Automatici</span>
                     </div>
                     <div class="project-tags">
-                        <span class="project-tag">React</span>
-                        <span class="project-tag">TypeScript</span>
-                        <span class="project-tag">SignalR</span>
-                        <span class="project-tag">Recharts</span>
+                        <span class="project-tag">.NET / WPF</span>
+                        <span class="project-tag">SQL Server</span>
+                        <span class="project-tag">Entity Framework</span>
+                        <span class="project-tag">MVVM</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Dettagli</a>
+                        <button class="project-link" onclick="ProjectModal.open('tabaccherie')">Dettagli</button>
                     </div>
                 </div>
 
-                <div class="project-card visible" data-tags="dotnet,azure,docker">
+                <div class="project-card visible" data-tags="dotnet,security,encryption">
                     <div class="project-header">
-                        <h3 class="project-title">API Gateway & Auth Service</h3>
+                        <h3 class="project-title">Gestionale Password</h3>
                     </div>
                     <p class="project-description">
-                        Servizio centralizzato di autenticazione e autorizzazione per ecosistema microservizi.
-                        JWT con refresh token rotation, OAuth2, logging delle sessioni
-                        e gestione multi-applicazione.
+                        Vault sicuro per la gestione delle credenziali aziendali con architettura Zero-Knowledge.
+                        Crittografia client-side AES-256, condivisione sicura delle password tra team,
+                        e audit log immutabile per ogni accesso.
                     </p>
                     <div class="project-tech-details">
-                        <span class="tech-detail">Token rotation sicura</span>
-                        <span class="tech-detail">Rate limiting</span>
-                        <span class="tech-detail">Audit trail completo</span>
+                        <span class="tech-detail">AES-256 Encryption</span>
+                        <span class="tech-detail">Zero-Knowledge Arch</span>
+                        <span class="tech-detail">Secure Sharing</span>
                     </div>
                     <div class="project-tags">
-                        <span class="project-tag">ASP.NET Core</span>
-                        <span class="project-tag">JWT/OAuth2</span>
-                        <span class="project-tag">Redis</span>
-                        <span class="project-tag">Docker</span>
+                        <span class="project-tag">.NET Core</span>
+                        <span class="project-tag">Blazor</span>
+                        <span class="project-tag">IdentityServer</span>
+                        <span class="project-tag">Cryptography</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Dettagli</a>
-                    </div>
-                </div>
-
-                <div class="project-card visible" data-tags="angular,dotnet">
-                    <div class="project-header">
-                        <h3 class="project-title">Portale Configurazione Aziendale</h3>
-                    </div>
-                    <p class="project-description">
-                        Applicazione SPA per la configurazione centralizzata di parametri aziendali,
-                        workflow approvativi e gestione documentale. UI complessa con form dinamici,
-                        validazione avanzata e sistema di notifiche.
-                    </p>
-                    <div class="project-tech-details">
-                        <span class="tech-detail">Form builder dinamico</span>
-                        <span class="tech-detail">Workflow engine</span>
-                        <span class="tech-detail">Versioning documenti</span>
-                    </div>
-                    <div class="project-tags">
-                        <span class="project-tag">Angular</span>
-                        <span class="project-tag">RxJS</span>
-                        <span class="project-tag">ASP.NET Core</span>
-                        <span class="project-tag">EF Core</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Dettagli</a>
-                    </div>
-                </div>
-
-                <div class="project-card visible" data-tags="dotnet,integrazioni">
-                    <div class="project-header">
-                        <h3 class="project-title">ETL & Data Pipeline</h3>
-                    </div>
-                    <p class="project-description">
-                        Sistema di estrazione, trasformazione e caricamento dati da sorgenti multiple.
-                        Connettori per database legacy, file CSV/Excel, e API esterne.
-                        Scheduling configurabile e monitoraggio errori con alerting.
-                    </p>
-                    <div class="project-tech-details">
-                        <span class="tech-detail">Connettori modulari</span>
-                        <span class="tech-detail">Mapping configurabile</span>
-                        <span class="tech-detail">Error recovery</span>
-                    </div>
-                    <div class="project-tags">
-                        <span class="project-tag">ASP.NET Core</span>
-                        <span class="project-tag">Hangfire</span>
-                        <span class="project-tag">PostgreSQL</span>
-                        <span class="project-tag">Serilog</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Dettagli</a>
+                        <button class="project-link" onclick="ProjectModal.open('password')">Dettagli</button>
                     </div>
                 </div>
             </div>
@@ -452,7 +426,7 @@
         <div class="container">
             <div class="footer-content">
                 <p style="color: var(--text-muted); font-size: 0.875rem;">
-                    © 2026 Gioele Mantello. Costruito con HTML, CSS e ☕
+                    &copy; <span id="current-year">2026</span> Gioele Mantello. Costruito con HTML, CSS e &#9749;
                 </p>
                 <div class="social-links">
                     <a href="#" title="GitHub">GitHub</a>
@@ -469,6 +443,32 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="ProjectModal.close()">&times;</button>
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h2 id="modal-title" class="modal-title"></h2>
+                    <div id="modal-tags" class="modal-tags"></div>
+                </div>
+                <div class="modal-scroll-area">
+                    <p id="modal-description" class="modal-description"></p>
+                    
+                    <div class="modal-section">
+                        <h4>Funzionalità Chiave</h4>
+                        <ul id="modal-features" class="modal-list"></ul>
+                    </div>
+
+                    <div class="modal-section">
+                        <h4>Stack Tecnologico</h4>
+                        <div id="modal-tech" class="tech-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
