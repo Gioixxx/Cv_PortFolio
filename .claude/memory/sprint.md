@@ -6,23 +6,21 @@ Stato del lavoro in corso. Aggiornato con `/sprint`.
 
 ## Sprint attivo
 
-**Nome/Numero:** [es. Sprint 3 / "Autenticazione"]
-**Inizio:** YYYY-MM-DD
-**Fine prevista:** YYYY-MM-DD
-**Obiettivo:** [cosa vogliamo consegnare al termine di questo sprint]
+**Nome/Numero:** Sprint 1 / "Implementazione PRD - Fase 1"
+**Inizio:** 2026-04-19
+**Fine prevista:** 2026-04-26
+**Obiettivo:** Consegnare le funzionalità iniziali per il progetto Cv_PortFolio, risolvendo le user stories US-001 e US-002 come descritto nel PRD, assicurando che il build sia pulito e i criteri di accettazione soddisfatti.
 
 ### In corso
 
-- [ ] [task 1 — descrizione breve]
-- [ ] [task 2 — descrizione breve]
+- [ ] US-001: Titolo storia 1
+- [ ] US-002: Titolo storia 2
 
 ### Completati
 
-- [x] [task completato]
 
 ### Bloccati / In attesa
 
-- [ ] [task bloccato — motivo del blocco]
 
 ---
 

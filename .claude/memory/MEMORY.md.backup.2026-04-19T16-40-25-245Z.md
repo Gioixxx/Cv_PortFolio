@@ -1,20 +1,20 @@
-# Memoria Progetto — Cv_PortFolio
+# Memoria Progetto — [NOME PROGETTO]
 
 > Indice del contesto persistente. Aggiornato automaticamente da `/remember`.
 > Caricato da Claude ad ogni sessione via `@.claude/memory/MEMORY.md` nel CLAUDE.md del progetto.
 
 ## Panoramica
 
-**Stack:** dotnet
-**Repo:** F:/Root Progetti/PROJECTS/Cv_PortFolio
+**Stack:** [es. .NET 8 + Angular 17 + PostgreSQL]
+**Repo:** [URL o path locale]
 **Team:** [chi lavora al progetto]
-**Ultimo aggiornamento:** 2026-04-19
+**Ultimo aggiornamento:** [data]
 
 ## Contesto rapido
 
 > 2-3 righe su cos'è il progetto e qual è l'obiettivo attuale. Aggiorna questa sezione ogni sprint.
 
-Il progetto "Cv_PortFolio" mira a sviluppare una piattaforma per la gestione e la visualizzazione di un Curriculum Vitae e Portfolio. L'obiettivo attuale è l'implementazione delle funzionalità definite nel PRD corrente: "Descrizione breve della feature da implementare".
+[Descrizione breve del progetto e stato attuale]
 
 ## Indice memoria
 
@@ -30,5 +30,4 @@ Il progetto "Cv_PortFolio" mira a sviluppare una piattaforma per la gestione e l
 
 > Cose da tenere sempre a mente durante il lavoro. Aggiorna con `/remember`.
 
-- Garantire che il build passi per tutte le user stories implementate.
-- Mantenere la compatibilità con le librerie e gli standard .NET.
+- [aggiungi qui decisioni o vincoli critici]

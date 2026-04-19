@@ -20,15 +20,19 @@ Caricate da Claude durante review e generazione di codice.
 
 ## Struttura cartelle
 
-[Documenta qui eventuali variazioni dalla struttura standard delle libs]
+Il progetto segue una Clean Architecture, con una separazione dei layer (Domain, Application, Infrastructure, Presentation) come definito in `arch/clean-arch.md`. Ogni modulo di feature all'interno di un layer avrà la sua cartella dedicata.
 
 ## Naming
 
-[Documenta qui convenzioni di naming specifiche del progetto]
+- I nomi dei file e delle classi seguono il PascalCase.
+- I nomi delle interfacce iniziano con 'I'.
+- Le classi di Command e Query nel layer Application terminano rispettivamente con `Command` e `Query`.
+- Gli handler associati terminano con `Handler`.
 
 ## Pattern ricorrenti
 
-[Documenta qui pattern usati frequentemente nel progetto che non stanno nelle libs globali]
+- **CQRS con MediatR:** Per la gestione delle operazioni nel layer Application, seguendo il pattern Command Query Responsibility Segregation.
+- **Repository Pattern:** Per l'accesso ai dati, con un'implementazione generica nel layer Infrastructure.
 
 ## Vincoli noti
 
