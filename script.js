@@ -122,7 +122,7 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
         contact: () => `
 <span class="cmd-accent">Contatti</span>
 <span class="cmd-muted">────────────────────────────────</span>
-<span class="cmd-highlight">Email:</span>    your@email.com
+<span class="cmd-highlight">Email:</span>    mantellogioele@gmail.com
 <span class="cmd-highlight">GitHub:</span>   github.com/gioix
 <span class="cmd-highlight">LinkedIn:</span> linkedin.com/in/gioix
 
@@ -303,7 +303,7 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
 const SmoothNav = {
     init() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -336,7 +336,7 @@ const ProjectModal = {
                 'API Gateway per integrazioni esterne'
             ],
             tech: [
-                '.NET 8', 'C#', 'Angular 17', 'TypeScript', 'RxJS', 
+                '.NET 8', 'C#', 'Angular 17', 'TypeScript', 'RxJS',
                 'PostgreSQL', 'Redis', 'RabbitMQ', 'Docker', 'Azure DevOps'
             ]
         },
@@ -380,7 +380,7 @@ const ProjectModal = {
                 'Backup automatico in cloud'
             ],
             tech: [
-                'WPF', 'XAML', 'C#', 'MVVM Toolkit', 
+                'WPF', 'XAML', 'C#', 'MVVM Toolkit',
                 'SQL Server LocalDB', 'Dapper', 'Syncfusion Controls'
             ]
         },
@@ -402,7 +402,7 @@ const ProjectModal = {
                 'Integrazione Active Directory'
             ],
             tech: [
-                'Blazor WebAssembly', '.NET 8', 'IdentityServer4', 
+                'Blazor WebAssembly', '.NET 8', 'IdentityServer4',
                 'Web Crypto API', 'SignalR', 'SQL Server'
             ]
         }
@@ -434,22 +434,22 @@ const ProjectModal = {
         // Populate content
         document.getElementById('modal-title').textContent = project.title;
         document.getElementById('modal-description').innerText = project.description;
-        
+
         // Tags
         const tagsContainer = document.getElementById('modal-tags');
-        tagsContainer.innerHTML = project.tags.map(tag => 
+        tagsContainer.innerHTML = project.tags.map(tag =>
             `<span class="project-tag">${tag}</span>`
         ).join('');
 
         // Features
         const featuresContainer = document.getElementById('modal-features');
-        featuresContainer.innerHTML = project.features.map(feature => 
+        featuresContainer.innerHTML = project.features.map(feature =>
             `<li>${feature}</li>`
         ).join('');
 
         // Tech
         const techContainer = document.getElementById('modal-tech');
-        techContainer.innerHTML = project.tech.map(t => 
+        techContainer.innerHTML = project.tech.map(t =>
             `<span class="tech-tag">${t}</span>`
         ).join('');
 
