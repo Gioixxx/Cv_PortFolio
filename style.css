@@ -44,22 +44,6 @@
     to { opacity: 1; }
 }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -79,6 +63,39 @@
 @keyframes blink {
     0%, 50% { border-color: var(--accent-color); }
     51%, 100% { border-color: transparent; }
+}
+
+/* Scroll reveal — populated by ScrollReveal (script.js) via IntersectionObserver, reuses fadeInUp */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.reveal.is-visible {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.reveal-delay-1.is-visible { animation-delay: 0.1s; }
+.reveal-delay-2.is-visible { animation-delay: 0.2s; }
+.reveal-delay-3.is-visible { animation-delay: 0.3s; }
+.reveal-delay-4.is-visible { animation-delay: 0.4s; }
+
+/* Respect OS-level reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 /* Reset & Base */
@@ -218,6 +235,42 @@ nav {
     width: 100%;
 }
 
+/* Mobile nav toggle (hamburger) — hidden on desktop, shown at the 480px breakpoint below */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.nav-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-main);
+    border-radius: 2px;
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.nav-toggle.active .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
@@ -348,6 +401,18 @@ nav {
     box-shadow: 0 0 20px var(--accent-dim);
 }
 
+.hero-label-typed {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    width: 0;
+    border-right: 2px solid var(--accent-color);
+    animation:
+        typing 1.4s steps(28, end) 0.7s forwards,
+        blink 0.75s step-end infinite 0.7s;
+}
+
 .hero-title {
     margin-bottom: 1.5rem;
     animation: fadeInUp 0.8s ease-out 0.4s both;
@@ -382,6 +447,28 @@ nav {
     gap: 1.5rem;
     flex-wrap: wrap;
     animation: fadeInUp 0.8s ease-out 1s both;
+}
+
+.hero-scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    animation: fadeIn 0.8s ease-out 1.6s both, float 2.5s ease-in-out 1.6s infinite;
+}
+
+.hero-scroll-cue svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--text-muted);
 }
 
 /* Skills Snapshot */
@@ -480,6 +567,7 @@ nav {
 section {
     padding: 6rem 0;
     position: relative;
+    scroll-margin-top: 90px;
 }
 
 .section-header {
@@ -810,8 +898,44 @@ button:focus-visible,
 }
 
 @media (max-width: 480px) {
+    .nav-toggle {
+        display: flex;
+    }
+
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        padding-top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        background: rgba(15, 15, 17, 0.97);
+        backdrop-filter: blur(20px) saturate(180%);
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform var(--transition-mid), opacity var(--transition-mid);
+        z-index: 1050;
+    }
+
+    .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .nav-links a {
+        font-size: 1.25rem;
+    }
+
+    [data-theme="clean"] .nav-links {
+        background: rgba(255, 255, 255, 0.97);
+    }
+
+    [data-theme="clean"] .nav-toggle-bar {
+        background: var(--text-main);
     }
 
     .container {
@@ -1556,6 +1680,7 @@ button:focus-visible,
     .terminal-hint,
     .theme-toggle,
     .nav-actions,
+    .nav-toggle,
     .btn {
         display: none !important;
     }

@@ -10,6 +10,10 @@ const ThemeManager = {
         const saved = localStorage.getItem('theme');
         if (saved) {
             this.setTheme(saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            // Nessuna preferenza salvata: rispetta il tema chiaro del sistema alla prima visita.
+            // Se il sistema preferisce dark (o non esprime preferenza) resta il default Matrix.
+            this.setTheme('clean');
         }
         this.bindToggle();
     },
@@ -131,10 +135,10 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
         projects: () => `
 <span class="cmd-accent">Progetti</span>
 <span class="cmd-muted">────────────────────────────────</span>
-<span class="cmd-highlight">[1]</span> E-Commerce Platform    <span class="cmd-tag">.NET</span> <span class="cmd-tag">React</span> <span class="cmd-tag">Azure</span>
-<span class="cmd-highlight">[2]</span> Task Management API    <span class="cmd-tag">.NET</span> <span class="cmd-tag">Docker</span> <span class="cmd-tag">PostgreSQL</span>
-<span class="cmd-highlight">[3]</span> Dashboard Analytics    <span class="cmd-tag">Vue</span> <span class="cmd-tag">TypeScript</span> <span class="cmd-tag">D3.js</span>
-<span class="cmd-highlight">[4]</span> Auth Microservice      <span class="cmd-tag">.NET</span> <span class="cmd-tag">JWT</span> <span class="cmd-tag">Redis</span>
+<span class="cmd-highlight">[1]</span> Sistema Gestionale Multi-Tenant    <span class="cmd-tag">ASP.NET Core</span> <span class="cmd-tag">Angular</span> <span class="cmd-tag">CQRS</span>
+<span class="cmd-highlight">[2]</span> Sistema Integrazioni FTP/SFTP      <span class="cmd-tag">Hangfire</span> <span class="cmd-tag">Docker</span> <span class="cmd-tag">SFTP</span>
+<span class="cmd-highlight">[3]</span> Gestionale Tabaccherie             <span class="cmd-tag">.NET/WPF</span> <span class="cmd-tag">SQL Server</span> <span class="cmd-tag">MVVM</span>
+<span class="cmd-highlight">[4]</span> Gestionale Password                <span class="cmd-tag">Blazor</span> <span class="cmd-tag">IdentityServer</span> <span class="cmd-tag">Cryptography</span>
 
 <span class="cmd-muted">Digita</span> <span class="cmd-cmd">goto portfolio</span> <span class="cmd-muted">per i dettagli</span>`,
 
@@ -299,18 +303,62 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
     }
 };
 
-// Smooth scroll for navigation
-const SmoothNav = {
+// Mobile hamburger navigation
+const NavToggle = {
     init() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+        this.toggle = document.getElementById('nav-toggle');
+        this.navLinks = document.getElementById('nav-links');
+        if (!this.toggle || !this.navLinks) return;
+
+        this.toggle.addEventListener('click', () => this.toggleMenu());
+        this.navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => this.close());
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.close();
+        });
+    },
+
+    toggleMenu() {
+        this.navLinks.classList.contains('open') ? this.close() : this.open();
+    },
+
+    open() {
+        this.navLinks.classList.add('open');
+        this.toggle.classList.add('active');
+        this.toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+        this.navLinks.classList.remove('open');
+        this.toggle.classList.remove('active');
+        this.toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+};
+
+// Scroll-triggered reveal for sections below the hero (reuses the fadeInUp keyframe via .reveal/.is-visible in CSS)
+const ScrollReveal = {
+    init() {
+        const targets = document.querySelectorAll('.reveal');
+        if (!targets.length) return;
+
+        if (!('IntersectionObserver' in window)) {
+            targets.forEach(el => el.classList.add('is-visible'));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        targets.forEach(el => observer.observe(el));
     }
 };
 
@@ -472,7 +520,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ThemeManager.init();
     PortfolioFilter.init();
     Terminal.init();
-    SmoothNav.init();
+    NavToggle.init();
+    ScrollReveal.init();
 
     // Add terminal hint
     console.log('%c Press L to open the terminal ', 'background: #ccff00; color: #0f0f11; padding: 5px 10px; border-radius: 4px; font-family: monospace;');

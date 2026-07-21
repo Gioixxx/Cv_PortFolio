@@ -14,7 +14,7 @@
     <meta property="og:title" content="Gioele Mantello — Senior Full Stack Developer">
     <meta property="og:description"
         content="Senior Full Stack Developer specializzato in .NET e Frontend Moderno. Costruisco applicazioni scalabili, pulite e orientate al prodotto.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Gioele+Mantello+Portfolio">
+    <!-- TODO: og:image in attesa di un'immagine social-preview reale (1200x630), rimosso il placeholder.com rotto -->
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta property="twitter:title" content="Gioele Mantello — Senior Full Stack Developer">
     <meta property="twitter:description"
         content="Senior Full Stack Developer specializzato in .NET e Frontend Moderno. Costruisco applicazioni scalabili, pulite e orientate al prodotto.">
-    <meta property="twitter:image" content="https://via.placeholder.com/1200x630.png?text=Gioele+Mantello+Portfolio">
+    <!-- TODO: twitter:image in attesa di un'immagine social-preview reale (1200x630) -->
 
     <title>Gioele Mantello — Senior Full Stack Developer</title>
 
@@ -46,7 +46,7 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">&gt;_ Gioele Mantello</a>
-                <ul class="nav-links">
+                <ul id="nav-links" class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#chi-sono">Chi sono</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
@@ -58,6 +58,12 @@
                         <span class="toggle-icon">&#9789;</span>
                         <span class="toggle-label">Clean</span>
                     </button>
+                    <button id="nav-toggle" class="nav-toggle" aria-label="Apri menu" aria-expanded="false"
+                        aria-controls="nav-links">
+                        <span class="nav-toggle-bar"></span>
+                        <span class="nav-toggle-bar"></span>
+                        <span class="nav-toggle-bar"></span>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -67,7 +73,7 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-label">&gt; console.log("Hello World")</span>
+                <span class="hero-label"><span class="hero-label-typed">&gt; console.log("Hello World")</span></span>
                 <h1 class="hero-title">
                     Gioele Mantello — <br>
                     <span class="mono">Senior Full Stack Developer</span>
@@ -82,6 +88,12 @@
                     <a href="#contatti" class="btn btn-outline">Contattami</a>
                 </div>
             </div>
+            <a href="#chi-sono" class="hero-scroll-cue" aria-label="Scorri alla sezione successiva">
+                <span>Scorri</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M5 12l7 7 7-7"></path>
+                </svg>
+            </a>
         </div>
     </section>
 
@@ -89,22 +101,22 @@
     <section class="skills-snapshot">
         <div class="container">
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card reveal reveal-delay-1">
                     <div class="skill-icon">⚙️</div>
                     <h3 class="skill-title">Backend</h3>
                     <p class="skill-tags">.NET, C#, SQL, APIs</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card reveal reveal-delay-2">
                     <div class="skill-icon">🎨</div>
                     <h3 class="skill-title">Frontend</h3>
                     <p class="skill-tags">React, Angular, Vue, TypeScript</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card reveal reveal-delay-3">
                     <div class="skill-icon">🏗️</div>
                     <h3 class="skill-title">Architettura</h3>
                     <p class="skill-tags">Microservizi, Cloud, DDD, Docker</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card reveal reveal-delay-4">
                     <div class="skill-icon">✨</div>
                     <h3 class="skill-title">UI/UX</h3>
                     <p class="skill-tags">Figma, Design Systems, Wireframing, Prototyping</p>
@@ -116,7 +128,7 @@
     <!-- Chi sono Section -->
     <section id="chi-sono">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">// chi_sono</h2>
                 <p class="section-subtitle">
                     Profilo professionale e approccio al lavoro
@@ -125,7 +137,7 @@
 
             <div class="about-grid">
                 <!-- Profilo -->
-                <div class="about-main">
+                <div class="about-main reveal">
                     <p class="about-lead">
                         Sono un <strong>Senior Full Stack Developer</strong> con una solida formazione informatica
                         e diversi anni di esperienza nello sviluppo di applicazioni web e software complessi.
@@ -150,7 +162,7 @@
                 <!-- Sidebar Info -->
                 <div class="about-sidebar">
                     <!-- Formazione -->
-                    <div class="info-card">
+                    <div class="info-card reveal reveal-delay-1">
                         <h4 class="info-card-title">Formazione</h4>
                         <div class="info-item">
                             <span class="info-label">Studi Universitari in Informatica</span>
@@ -163,7 +175,7 @@
                     </div>
 
                     <!-- Esperienza -->
-                    <div class="info-card">
+                    <div class="info-card reveal reveal-delay-2">
                         <h4 class="info-card-title">Esperienza</h4>
                         <ul class="experience-list">
                             <li>Applicazioni web enterprise</li>
@@ -177,7 +189,7 @@
             </div>
 
             <!-- Approccio Box -->
-            <div class="approccio-box" style="margin-top: 3rem;">
+            <div class="approccio-box reveal" style="margin-top: 3rem;">
                 <h3 class="approccio-title">Approccio Professionale</h3>
                 <p class="approccio-text">
                     Affronto ogni progetto con un approccio analitico e orientato alla qualit&agrave;,
@@ -193,7 +205,7 @@
     <!-- Portfolio Section -->
     <section id="portfolio">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">// portfolio</h2>
                 <p class="section-subtitle">
                     Progetti selezionati che dimostrano competenze reali
@@ -201,7 +213,7 @@
             </div>
 
             <!-- Portfolio Filters -->
-            <div class="filter-container">
+            <div class="filter-container reveal">
                 <button class="filter-tag active" data-filter="all">Tutti</button>
                 <button class="filter-tag" data-filter="dotnet">.NET</button>
                 <button class="filter-tag" data-filter="angular">Angular</button>
@@ -211,7 +223,7 @@
             </div>
 
             <!-- Projects Grid -->
-            <div class="projects-grid">
+            <div class="projects-grid reveal">
                 <div class="project-card visible" data-tags="dotnet,angular,azure">
                     <div class="project-header">
                         <h3 class="project-title">Sistema Gestionale Multi-Tenant</h3>
@@ -318,7 +330,7 @@
     <!-- Competenze Section -->
     <section id="competenze">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">// competenze</h2>
                 <p class="section-subtitle">
                     Stack tecnologico e metodologie di lavoro
@@ -327,7 +339,7 @@
 
             <div class="competenze-grid">
                 <!-- Backend & Architettura -->
-                <div class="competenza-card">
+                <div class="competenza-card reveal reveal-delay-1">
                     <div class="competenza-icon">&#9881;</div>
                     <h3 class="competenza-title">Backend & Architettura</h3>
                     <p class="competenza-text">
@@ -350,7 +362,7 @@
                 </div>
 
                 <!-- Frontend & UI -->
-                <div class="competenza-card">
+                <div class="competenza-card reveal reveal-delay-2">
                     <div class="competenza-icon">&#9998;</div>
                     <h3 class="competenza-title">Frontend & UI</h3>
                     <p class="competenza-text">
@@ -371,7 +383,7 @@
                 </div>
 
                 <!-- Sistemi & Integrazioni -->
-                <div class="competenza-card">
+                <div class="competenza-card reveal reveal-delay-3">
                     <div class="competenza-icon">&#8644;</div>
                     <h3 class="competenza-title">Sistemi & Integrazioni</h3>
                     <p class="competenza-text">
@@ -391,7 +403,7 @@
                 </div>
 
                 <!-- Metodologie & Qualit&agrave; -->
-                <div class="competenza-card">
+                <div class="competenza-card reveal reveal-delay-4">
                     <div class="competenza-icon">&#10003;</div>
                     <h3 class="competenza-title">Metodologie & Qualit&agrave;</h3>
                     <p class="competenza-text">
@@ -407,14 +419,15 @@
                 </div>
             </div>
 
-            <!-- Approccio Professionale -->
-            <div class="approccio-box">
-                <h3 class="approccio-title">Approccio professionale</h3>
+            <!-- Metodologia in pratica -->
+            <div class="approccio-box reveal">
+                <h3 class="approccio-title">Metodologia in pratica</h3>
                 <p class="approccio-text">
-                    Mi piace costruire soluzioni solide, comprensibili e realmente utilizzabili, collaborando in modo
-                    chiaro con team tecnici e stakeholder non tecnici.
-                    Valuto sempre il compromesso migliore tra <strong>qualit&agrave; tecnica</strong>,
-                    <strong>tempi</strong> e <strong>valore reale</strong> per il progetto.
+                    Ogni progetto segue un ciclo di sviluppo tracciabile: versionamento con Git,
+                    pipeline di CI/CD per build e deploy ripetibili, test automatizzati sui percorsi
+                    critici e code review sistematiche. La documentazione tecnica accompagna il codice
+                    invece di rincorrerlo a posteriori, cos&igrave; che il progetto resti manutenibile
+                    anche a distanza di mesi.
                 </p>
             </div>
         </div>
@@ -423,19 +436,20 @@
     <!-- Contatti Section -->
     <section id="contatti">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">// contatti</h2>
                 <p class="section-subtitle">
                     Parliamo del tuo prossimo progetto
                 </p>
             </div>
-            <div class="placeholder-box">
+            <div class="placeholder-box reveal">
                 <p class="mono" style="font-size: 1.5rem; margin-bottom: 1rem;">📧 Contatti</p>
                 <p style="color: var(--text-secondary); margin-bottom: 2rem;">Email: <a
                         href="mailto:mantellogioele@gmail.com" class="email-link">mantellogioele@gmail.com</a></p>
                 <div class="social-links" style="justify-content: center;">
-                    <a href="#" title="GitHub">GitHub</a>
-                    <a href="#" title="LinkedIn">LinkedIn</a>
+                    <a href="https://github.com/gioix" title="GitHub" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/gioix" title="LinkedIn" target="_blank"
+                        rel="noopener">LinkedIn</a>
                 </div>
             </div>
         </div>
@@ -449,9 +463,10 @@
                     &copy; <span id="current-year">2026</span> Gioele Mantello. Costruito con HTML, CSS e &#9749;
                 </p>
                 <div class="social-links">
-                    <a href="#" title="GitHub">GitHub</a>
-                    <a href="#" title="LinkedIn">LinkedIn</a>
-                    <a href="#" title="Email">Email</a>
+                    <a href="https://github.com/gioix" title="GitHub" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/gioix" title="LinkedIn" target="_blank"
+                        rel="noopener">LinkedIn</a>
+                    <a href="mailto:mantellogioele@gmail.com" title="Email">Email</a>
                 </div>
             </div>
         </div>

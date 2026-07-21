@@ -35,7 +35,7 @@ Sito web portfolio personale per presentare competenze, progetti ed esperienze c
 - **Chi sono** - Profilo, formazione ed esperienza
 - **Portfolio** - Progetti con filtri per tecnologia
 - **Competenze** - Stack tecnologico e metodologie
-- **Contatti** - Form e link social
+- **Contatti** - Email e link social
 
 ## Utilizzo
 
