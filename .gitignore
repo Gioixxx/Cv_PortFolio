@@ -1,2 +1,8 @@
 # Ralph — stato live (non committare)
 ralph/run-state.json
+
+.claude/memory-sync.log
+
+.ralph-worktrees/
+
+.claude/libs-ext/
