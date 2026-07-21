@@ -235,6 +235,14 @@ nav {
     width: 100%;
 }
 
+.nav-links a.active {
+    color: var(--accent-color);
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
 /* Mobile nav toggle (hamburger) — hidden on desktop, shown at the 480px breakpoint below */
 .nav-toggle {
     display: none;

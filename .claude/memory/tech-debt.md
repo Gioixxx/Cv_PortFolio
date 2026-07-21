@@ -30,7 +30,15 @@ Aggiornato da `/session-end`.
 
 ## Bassa priorità
 
-<!-- Miglioramenti non urgenti, pulizia, refactoring cosmetici -->
+### Immagini social preview mancanti
+**Priorità:** Bassa
+**Area:** SEO e social sharing
+**Data:** 2026-07-21
+**Introdotto da:** commit corrente
+**Descrizione:** Le immagini og:image e twitter:image sono ancora placeholder, non sono state sostituite con immagini reali di 1200x630.
+**Perché rimandato:** Nessuna dipendenza esterna, semplice sostituzione.
+**Impatto attuale:** Problema di presentazione nei social media.
+**Risoluzione suggerita:** Sostituire i placeholder con immagini reali e verificare il caricamento corretto.
 
 ---
 

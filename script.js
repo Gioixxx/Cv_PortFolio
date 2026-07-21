@@ -362,6 +362,98 @@ const ScrollReveal = {
     }
 };
 
+// Highlights the nav link matching the section currently in view
+const ScrollSpy = {
+    init() {
+        this.navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+        this.sections = this.navLinks
+            .map(link => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+
+        if (!this.sections.length || !('IntersectionObserver' in window)) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const href = `#${entry.target.id}`;
+                this.navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === href);
+                });
+            });
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+        this.sections.forEach(section => observer.observe(section));
+    }
+};
+
+// Hover micro-interactions (card tilt, magnetic buttons) — skipped for touch devices and reduced-motion preference
+const MicroInteractions = {
+    cardLift: {
+        'skill-card': -8,
+        'project-card': -5,
+        'competenza-card': -5,
+        'info-card': -3
+    },
+    btnLift: {
+        'btn-primary': -3,
+        'btn-secondary': -2,
+        'btn-outline': -2
+    },
+
+    init() {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        if (prefersReducedMotion || !hasFinePointer) return;
+
+        this.bindTilt();
+        this.bindMagneticButtons();
+    },
+
+    bindTilt() {
+        const cards = document.querySelectorAll('.skill-card, .project-card, .competenza-card, .info-card');
+        cards.forEach(card => {
+            const liftClass = Object.keys(this.cardLift).find(c => card.classList.contains(c));
+            const lift = this.cardLift[liftClass] ?? -5;
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const px = (e.clientX - rect.left) / rect.width;
+                const py = (e.clientY - rect.top) / rect.height;
+                const rotateX = (0.5 - py) * 8;
+                const rotateY = (px - 0.5) * 8;
+                card.style.transition = 'transform 0.1s ease-out';
+                card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(${lift}px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transition = 'transform var(--transition-mid)';
+                card.style.transform = '';
+            });
+        });
+    },
+
+    bindMagneticButtons() {
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            const liftClass = Object.keys(this.btnLift).find(c => btn.classList.contains(c));
+            const lift = this.btnLift[liftClass] ?? -2;
+
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+                btn.style.transition = 'transform 0.1s ease-out';
+                btn.style.transform = `translate(${x}px, ${y + lift}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transition = 'transform var(--transition-mid)';
+                btn.style.transform = '';
+            });
+        });
+    }
+};
+
 // Project Modal System
 const ProjectModal = {
     projects: {
@@ -522,6 +614,8 @@ document.addEventListener('DOMContentLoaded', () => {
     Terminal.init();
     NavToggle.init();
     ScrollReveal.init();
+    ScrollSpy.init();
+    MicroInteractions.init();
 
     // Add terminal hint
     console.log('%c Press L to open the terminal ', 'background: #ccff00; color: #0f0f11; padding: 5px 10px; border-radius: 4px; font-family: monospace;');
