@@ -88,6 +88,7 @@ const PortfolioFilter = {
 // Interactive Terminal (Easter Egg)
 const Terminal = {
     isOpen: false,
+    gameActive: false,
     history: [],
     historyIndex: -1,
 
@@ -101,6 +102,7 @@ const Terminal = {
   <span class="cmd-cmd">download cv</span> - Scarica il CV
   <span class="cmd-cmd">goto [section]</span> - Naviga (home, chi-sono, portfolio, competenze, contatti)
   <span class="cmd-cmd">theme [matrix|clean]</span> - Cambia tema
+  <span class="cmd-cmd">play</span>        - Mini-game bug-runner
   <span class="cmd-cmd">clear</span>       - Pulisce il terminale
   <span class="cmd-cmd">exit</span>        - Chiude il terminale
 
@@ -141,6 +143,11 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
 <span class="cmd-highlight">[4]</span> Gestionale Password                <span class="cmd-tag">Blazor</span> <span class="cmd-tag">IdentityServer</span> <span class="cmd-tag">Cryptography</span>
 
 <span class="cmd-muted">Digita</span> <span class="cmd-cmd">goto portfolio</span> <span class="cmd-muted">per i dettagli</span>`,
+
+        play: () => {
+            setTimeout(() => TerminalGame.start(), 400);
+            return `<span class="cmd-accent">Avvio bug-runner...</span>\n<span class="cmd-muted">SPAZIO per saltare, ESC per uscire</span>`;
+        },
 
         clear: () => {
             const output = document.getElementById('terminal-output');
@@ -198,7 +205,7 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
                 e.preventDefault();
                 this.open();
             }
-            if (e.key === 'Escape' && this.isOpen) {
+            if (e.key === 'Escape' && this.isOpen && !this.gameActive) {
                 this.close();
             }
         });
@@ -216,6 +223,7 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
     },
 
     close() {
+        if (this.gameActive) TerminalGame.stop();
         const terminal = document.getElementById('terminal');
         terminal.classList.remove('open');
         this.isOpen = false;
@@ -300,6 +308,186 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
 
         // Scroll to bottom
         output.scrollTop = output.scrollHeight;
+    }
+};
+
+// Bug-runner mini-game, played inside the Terminal (canvas swapped in for the output/input while active)
+const TerminalGame = {
+    canvas: null,
+    ctx: null,
+    running: false,
+    animationId: null,
+    keyHandler: null,
+
+    start() {
+        const output = document.getElementById('terminal-output');
+        const inputLine = document.querySelector('.terminal-input-line');
+        if (!output) return;
+
+        document.getElementById('terminal-input')?.blur();
+        if (inputLine) inputLine.style.display = 'none';
+
+        output.innerHTML = '';
+        output.classList.add('terminal-game-active');
+
+        this.canvas = document.createElement('canvas');
+        this.canvas.id = 'terminal-game-canvas';
+        this.canvas.width = output.clientWidth;
+        this.canvas.height = output.clientHeight;
+        output.appendChild(this.canvas);
+        this.ctx = this.canvas.getContext('2d');
+
+        this.groundY = this.canvas.height - 30;
+        this.player = { x: 30, y: this.groundY - 20, w: 18, h: 20, vy: 0, jumping: false };
+        this.obstacles = [];
+        this.frame = 0;
+        this.lastObstacleFrame = 0;
+        this.nextObstacleGap = 60;
+        this.speed = 4;
+        this.score = 0;
+        this.running = true;
+        Terminal.gameActive = true;
+
+        // start() can be re-entered via the 'r' restart shortcut — never stack listeners
+        if (this.keyHandler) document.removeEventListener('keydown', this.keyHandler);
+        this.keyHandler = (e) => this.handleKey(e);
+        document.addEventListener('keydown', this.keyHandler);
+
+        this.loop();
+    },
+
+    handleKey(e) {
+        if ((e.code === 'Space' || e.key === 'ArrowUp') && this.running && !this.player.jumping) {
+            e.preventDefault();
+            this.player.vy = -9;
+            this.player.jumping = true;
+        }
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            this.stop();
+        }
+        if (!this.running && e.key.toLowerCase() === 'r') {
+            this.start();
+        }
+    },
+
+    loop() {
+        if (!this.running) return;
+        if (!this.canvas || !this.canvas.isConnected) {
+            this.cleanup();
+            return;
+        }
+        this.update();
+        // update() may call gameOver(), which sets running=false and already drew the
+        // end screen — re-check so this draw() doesn't immediately clear it
+        if (!this.running) return;
+        this.draw();
+        this.animationId = requestAnimationFrame(() => this.loop());
+    },
+
+    update() {
+        this.frame++;
+
+        this.player.vy += 0.5;
+        this.player.y += this.player.vy;
+        if (this.player.y >= this.groundY - this.player.h) {
+            this.player.y = this.groundY - this.player.h;
+            this.player.vy = 0;
+            this.player.jumping = false;
+        }
+
+        if (this.frame - this.lastObstacleFrame > this.nextObstacleGap) {
+            this.obstacles.push({ x: this.canvas.width, w: 16, h: 18 });
+            this.lastObstacleFrame = this.frame;
+            this.nextObstacleGap = 45 + Math.random() * 50;
+        }
+
+        this.obstacles.forEach(o => o.x -= this.speed);
+        this.obstacles = this.obstacles.filter(o => o.x + o.w > 0);
+
+        for (const o of this.obstacles) {
+            const obstacleTop = this.groundY - o.h;
+            if (this.player.x < o.x + o.w && this.player.x + this.player.w > o.x &&
+                this.player.y + this.player.h > obstacleTop) {
+                this.gameOver();
+                return;
+            }
+        }
+
+        this.score += 1;
+        this.speed += 0.0025;
+    },
+
+    draw() {
+        const ctx = this.ctx;
+        const w = this.canvas.width;
+        const h = this.canvas.height;
+
+        ctx.clearRect(0, 0, w, h);
+
+        ctx.strokeStyle = 'rgba(204, 255, 0, 0.4)';
+        ctx.beginPath();
+        ctx.moveTo(0, this.groundY);
+        ctx.lineTo(w, this.groundY);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ccff00';
+        ctx.font = '18px "Fira Code", monospace';
+        ctx.fillText('>_', this.player.x, this.player.y + this.player.h);
+
+        ctx.font = '16px monospace';
+        this.obstacles.forEach(o => ctx.fillText('🐛', o.x, this.groundY));
+
+        ctx.fillStyle = '#a1a1aa';
+        ctx.font = '12px "Fira Code", monospace';
+        ctx.textAlign = 'right';
+        ctx.fillText(`Score: ${Math.floor(this.score / 5)}`, w - 10, 18);
+        ctx.textAlign = 'left';
+    },
+
+    gameOver() {
+        this.running = false;
+        if (this.animationId) cancelAnimationFrame(this.animationId);
+
+        const ctx = this.ctx;
+        const w = this.canvas.width;
+        const h = this.canvas.height;
+
+        ctx.fillStyle = 'rgba(10, 10, 12, 0.85)';
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ccff00';
+        ctx.font = 'bold 16px "Fira Code", monospace';
+        ctx.fillText('GAME OVER', w / 2, h / 2 - 10);
+
+        ctx.fillStyle = '#a1a1aa';
+        ctx.font = '12px "Fira Code", monospace';
+        ctx.fillText(`Score: ${Math.floor(this.score / 5)} — R per rigiocare, ESC per uscire`, w / 2, h / 2 + 14);
+        ctx.textAlign = 'left';
+    },
+
+    cleanup() {
+        this.running = false;
+        if (this.animationId) cancelAnimationFrame(this.animationId);
+        if (this.keyHandler) document.removeEventListener('keydown', this.keyHandler);
+        Terminal.gameActive = false;
+    },
+
+    stop() {
+        const finalScore = Math.floor(this.score / 5);
+        this.cleanup();
+
+        const output = document.getElementById('terminal-output');
+        const inputLine = document.querySelector('.terminal-input-line');
+        if (output) {
+            output.classList.remove('terminal-game-active');
+            output.innerHTML = `\n<span class="cmd-accent">Bug-runner terminato.</span> <span class="cmd-muted">Score: ${finalScore}</span>\n`;
+        }
+        if (inputLine) {
+            inputLine.style.display = '';
+            document.getElementById('terminal-input')?.focus();
+        }
     }
 };
 
