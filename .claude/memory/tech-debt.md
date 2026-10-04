@@ -30,18 +30,12 @@ Aggiornato da `/session-end`.
 
 ## Bassa priorità
 
-### Immagini social preview mancanti
-**Priorità:** Bassa
-**Area:** SEO e social sharing
-**Data:** 2026-07-21
-**Introdotto da:** commit corrente
-**Descrizione:** Le immagini og:image e twitter:image sono ancora placeholder, non sono state sostituite con immagini reali di 1200x630.
-**Perché rimandato:** Nessuna dipendenza esterna, semplice sostituzione.
-**Impatto attuale:** Problema di presentazione nei social media.
-**Risoluzione suggerita:** Sostituire i placeholder con immagini reali e verificare il caricamento corretto.
-
 ---
 
 ## Archiviato
 
 <!-- Item risolti — non eliminare, servono come storico -->
+
+### Immagini social preview mancanti — risolto 2026-10-04
+**Descrizione originale:** og:image e twitter:image erano placeholder, non c'era un'immagine reale di 1200x630.
+**Risoluzione:** `og-image.png` (1200x630) generata da `social/og-image.html` con `social/build-og-image.ps1`; meta og/twitter aggiornati. Corretti anche `og:url`/`twitter:url`, che puntavano a `gioelemantello.dev` (non raggiungibile), ora l'URL di GitHub Pages, con `rel="canonical"`.

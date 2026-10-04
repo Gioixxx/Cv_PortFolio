@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Anteprima social — Gioele Mantello</title>
+    <!-- Sorgente di ../og-image.png (1200x630). Rigenera l'immagine con social/build-og-image.ps1. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;600;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f0f11;
+            --accent: #ccff00;
+            --text: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --mono: 'Fira Code', Consolas, 'Courier New', monospace;
+            --sans: 'Inter', 'Segoe UI', Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 1200px;
+            height: 630px;
+            overflow: hidden;
+            background: var(--bg);
+        }
+
+        .card {
+            position: relative;
+            width: 1200px;
+            height: 630px;
+            padding: 78px 88px;
+            font-family: var(--sans);
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 640px 420px at 12% 8%, rgba(204, 255, 0, 0.16), transparent 70%),
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 48px 48px,
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 48px 48px,
+                var(--bg);
+        }
+
+        /* Barra d'accento a sinistra, come i box della pagina */
+        .card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 78px;
+            bottom: 78px;
+            width: 6px;
+            background: var(--accent);
+            box-shadow: 0 0 28px rgba(204, 255, 0, 0.55);
+        }
+
+        .label {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 24px;
+            color: var(--accent);
+            padding: 9px 20px;
+            border: 1.5px solid rgba(204, 255, 0, 0.45);
+            border-radius: 8px;
+            background: rgba(204, 255, 0, 0.08);
+        }
+
+        h1 {
+            margin-top: 34px;
+            font-size: 108px;
+            line-height: 1.02;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .role {
+            margin-top: 16px;
+            font-family: var(--mono);
+            font-size: 50px;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 0 26px rgba(204, 255, 0, 0.35);
+        }
+
+        .stack {
+            margin-top: 26px;
+            font-size: 34px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .tagline {
+            margin-top: 10px;
+            font-size: 27px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            position: absolute;
+            left: 88px;
+            right: 88px;
+            bottom: 62px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 23px;
+            color: var(--text-muted);
+        }
+
+        .chips {
+            display: flex;
+            gap: 12px;
+        }
+
+        .chip {
+            padding: 6px 16px;
+            border-radius: 6px;
+            background: rgba(204, 255, 0, 0.1);
+            color: var(--accent);
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <span class="label">&gt; console.log("Hello World")</span>
+        <h1>Gioele Mantello</h1>
+        <div class="role">Senior Full Stack Developer</div>
+        <div class="stack">.NET &amp; Frontend Moderno</div>
+        <div class="tagline">Costruisco applicazioni scalabili, pulite e orientate al prodotto</div>
+        <div class="footer">
+            <div class="chips">
+                <span class="chip">.NET</span>
+                <span class="chip">Angular</span>
+                <span class="chip">Java</span>
+                <span class="chip">TypeScript</span>
+            </div>
+            <span>gioixxx.github.io/Cv_PortFolio</span>
+        </div>
+    </div>
+</body>
+
+</html>
