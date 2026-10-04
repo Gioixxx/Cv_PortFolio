@@ -151,6 +151,79 @@
             margin-bottom: 2.6mm;
         }
 
+        /* Azienda con incarichi per cliente annidati */
+        .job {
+            break-inside: avoid-page;
+        }
+
+        .job+.job {
+            margin-top: 3mm;
+        }
+
+        .job-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 4mm;
+        }
+
+        .job-company {
+            font-weight: 700;
+            font-size: 10pt;
+        }
+
+        .job-roles {
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        .job-period {
+            font-size: 8.6pt;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .engagements {
+            margin: 1.6mm 0 0 1.2mm;
+            padding-left: 3.4mm;
+            border-left: 1.4pt solid var(--rule);
+        }
+
+        .engagements .entry+.entry {
+            margin-top: 2.2mm;
+        }
+
+        .role-line {
+            color: var(--muted);
+            font-size: 8.8pt;
+        }
+
+        .subhead {
+            margin: 4mm 0 2mm;
+            font-size: 8.6pt;
+            font-weight: 700;
+            letter-spacing: 0.6pt;
+            text-transform: uppercase;
+            color: var(--muted);
+            break-after: avoid;
+        }
+
+        .earlier {
+            break-inside: avoid;
+            display: flex;
+            justify-content: space-between;
+            gap: 4mm;
+        }
+
+        .earlier+.earlier {
+            margin-top: 0.8mm;
+        }
+
+        .earlier .when {
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
         .edu {
             display: flex;
             justify-content: space-between;
@@ -184,7 +257,9 @@
             <p>
                 Senior Full Stack Developer con una solida formazione informatica e diversi anni di esperienza
                 nello sviluppo di applicazioni web e software complessi: sistemi gestionali, integrazioni con
-                sistemi legacy, piattaforme configurabili e applicazioni desktop.
+                sistemi legacy, piattaforme configurabili e applicazioni desktop. Dal 2018 lavoro in
+                Maticanet su progetti per clienti come Aeroporti di Roma e Banca Igea, con ruoli che vanno dallo
+                sviluppo all'analisi e alla gestione dei database.
             </p>
             <p>
                 Il mio approccio &egrave; pragmatico e orientato al valore: soluzioni pulite, leggibili e
@@ -197,12 +272,14 @@
             <h2>Competenze</h2>
             <dl class="skills">
                 <dt>Backend</dt>
-                <dd>C#, .NET / ASP.NET Core, Entity Framework Core, API REST, CQRS, Event Sourcing, sistemi
-                    multi-tenant, autenticazione e autorizzazione, architetture a plugin</dd>
+                <dd>C#, .NET / ASP.NET Core, Entity Framework Core, Java (Java EE, Spring, Hibernate, Maven),
+                    API REST, CQRS, Event Sourcing, sistemi multi-tenant, autenticazione e autorizzazione,
+                    architetture a plugin</dd>
                 <dt>Database</dt>
-                <dd>PostgreSQL, MySQL, SQLite</dd>
+                <dd>SQL, PostgreSQL, MySQL, SQLite</dd>
                 <dt>Frontend</dt>
-                <dd>Angular, React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS</dd>
+                <dd>Angular, React, Next.js, TypeScript, JavaScript, jQuery, JSP, HTML, CSS, SCSS, Bootstrap,
+                    Tailwind CSS</dd>
                 <dt>Desktop e mobile</dt>
                 <dd>WPF (MVVM), Electron, WebView2, Android (Kotlin)</dd>
                 <dt>Python e AI locale</dt>
@@ -216,11 +293,51 @@
 
         <section>
             <h2>Esperienza professionale</h2>
-            <p class="lead-in">
-                Sviluppo di applicazioni web enterprise, sistemi gestionali, dashboard operative, piattaforme
-                configurabili e integrazioni con sistemi legacy, in contesti aziendali e in progetti personali
-                complessi.
-            </p>
+            <div class="job">
+                <div class="job-head">
+                    <span class="job-company">Maticanet S.R.L., Roma
+                        <span class="job-roles">&mdash; Stagista, poi Junior Java Developer (dal 2019)</span></span>
+                    <span class="job-period">Ottobre 2018 &ndash; oggi</span>
+                </div>
+                <div class="engagements">
+                    <div class="entry">
+                        <div class="entry-head">
+                            <span class="entry-title">Aeroporti di Roma (AdR) &mdash; portali operativi
+                                <span class="stack">&middot; Java EE, Spring, JSP, jQuery, SQL</span></span>
+                            <span class="entry-link">03/2019 &ndash; oggi</span>
+                        </div>
+                        <div class="role-line">Sviluppatore, analista programmatore, data analyst, DB administrator</div>
+                        <p>Sviluppo di nuove funzionalit&agrave; e aggiornamento dei portali usati dagli operatori
+                            all'interno dell'aeroporto. Analisi dei sistemi in tutte le loro componenti (web e
+                            database), modifiche e test richiesti dall'utente, miglioramenti grafici integrati con
+                            le funzionalit&agrave; esistenti.</p>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-head">
+                            <span class="entry-title">Aeroporti di Roma (AdR) &mdash; assistenza tecnica
+                                <span class="stack">&middot; Java EE, Spring, SQL</span></span>
+                            <span class="entry-link">11/2019 &ndash; oggi</span>
+                        </div>
+                        <div class="role-line">Analista programmatore, data analyst, DB administrator</div>
+                        <p>Assistenza al personale AdR tramite ticket sulle anomalie dei sistemi, con interventi di
+                            controllo e confronto diretto con gli utenti (chiamate ed e-mail) per approfondire la
+                            criticit&agrave; segnalata.</p>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-head">
+                            <span class="entry-title">Banca Igea &mdash; nuovo applicativo
+                                <span class="stack">&middot; Angular, TypeScript, Bootstrap, SCSS</span></span>
+                            <span class="entry-link">01/2021 &ndash; oggi</span>
+                        </div>
+                        <div class="role-line">Sviluppatore</div>
+                        <p>Sviluppo di nuovi componenti e ampliamento del sistema con le funzionalit&agrave; richieste
+                            dal cliente: integrazione con web service (chiamate GET e POST) e costruzione
+                            dell'interfaccia con Bootstrap.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subhead">Altri progetti enterprise</div>
             <div class="entry">
                 <div class="entry-head">
                     <span class="entry-title">Sistema gestionale multi-tenant
@@ -236,6 +353,16 @@
                 </div>
                 <p>Framework configurabile per il trasferimento file tra sistemi eterogenei (FTP, SFTP, AS400),
                     con scheduling flessibile, retry configurabile e dashboard di monitoraggio.</p>
+            </div>
+
+            <div class="subhead">Esperienze precedenti</div>
+            <div class="earlier">
+                <span><strong>Jstudios, Perugia</strong> &mdash; tirocinio universitario</span>
+                <span class="when">Ottobre &ndash; novembre 2016</span>
+            </div>
+            <div class="earlier">
+                <span><strong>P.REVIEW S.R.L., Milano</strong> &mdash; stage formativo (160 ore)</span>
+                <span class="when">Luglio &ndash; settembre 2011</span>
             </div>
         </section>
 
@@ -323,7 +450,7 @@
                 <span class="where">Universit&agrave; degli Studi di Perugia</span>
             </div>
             <div class="edu">
-                <span><strong>Diploma di Perito Informatico</strong></span>
+                <span><strong>Diploma di Perito Informatico</strong> (2011)</span>
                 <span class="where">ITIS &ldquo;Euclide&rdquo;, Caltagirone</span>
             </div>
         </section>
