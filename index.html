@@ -84,7 +84,7 @@
                 </p>
                 <div class="hero-cta">
                     <a href="#portfolio" class="btn btn-primary">Vedi Portfolio</a>
-                    <a href="cv.pdf" class="btn btn-secondary" download>Scarica CV</a>
+                    <a href="cv.pdf" class="btn btn-secondary" download="Giuseppe-Gioele-Mantello-CV.pdf">Scarica CV</a>
                     <a href="#contatti" class="btn btn-outline">Contattami</a>
                 </div>
             </div>
@@ -220,6 +220,9 @@
                 <button class="filter-tag" data-filter="react">React</button>
                 <button class="filter-tag" data-filter="integrazioni">Integrazioni</button>
                 <button class="filter-tag" data-filter="docker">Docker</button>
+                <button class="filter-tag" data-filter="desktop">Desktop</button>
+                <button class="filter-tag" data-filter="ai">AI</button>
+                <button class="filter-tag" data-filter="python">Python</button>
             </div>
 
             <!-- Projects Grid -->
@@ -274,28 +277,31 @@
                     </div>
                 </div>
 
-                <div class="project-card visible" data-tags="dotnet,wpf,sql">
+                <div class="project-card visible" data-tags="dotnet,wpf,desktop">
                     <div class="project-header">
                         <h3 class="project-title">Gestionale Tabaccherie</h3>
                     </div>
                     <p class="project-description">
-                        Software gestionale completo per tabaccherie con punto cassa touch-screen.
-                        Gestione automatizzata del magazzino, riordino tabacchi, e integrazione diretta
-                        con i sistemi Lottomatica e registratori di cassa telematici.
+                        Applicativo desktop Windows per la gestione di tabaccherie italiane, conforme alle
+                        normative ADM/Logista. Sincronizza il listino dal portale Logista, gestisce magazzino,
+                        ordini e vendite con lettore barcode e carica le consegne da una foto della fattura
+                        grazie a un OCR locale.
                     </p>
                     <div class="project-tech-details">
-                        <span class="tech-detail">Interfaccia Touch</span>
-                        <span class="tech-detail">Integrazione Fiscal Printer</span>
-                        <span class="tech-detail">Ordini Automatici</span>
+                        <span class="tech-detail">Sync listino Logista</span>
+                        <span class="tech-detail">OCR fatture offline</span>
+                        <span class="tech-detail">Backup su OneDrive / Google Drive</span>
                     </div>
                     <div class="project-tags">
-                        <span class="project-tag">.NET / WPF</span>
-                        <span class="project-tag">SQL Server</span>
-                        <span class="project-tag">Entity Framework</span>
+                        <span class="project-tag">.NET 8 / WPF</span>
+                        <span class="project-tag">EF Core + SQLite</span>
                         <span class="project-tag">MVVM</span>
+                        <span class="project-tag">OCR</span>
                     </div>
                     <div class="project-links">
                         <button class="project-link" onclick="ProjectModal.open('tabaccherie')">Dettagli</button>
+                        <a class="project-link" href="https://github.com/Gioixxx/Gestionale-Tabaccherie"
+                            target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
 
@@ -321,6 +327,193 @@
                     </div>
                     <div class="project-links">
                         <button class="project-link" onclick="ProjectModal.open('password')">Dettagli</button>
+                    </div>
+                </div>
+
+                <div class="project-card visible" data-tags="react,desktop,ai">
+                    <div class="project-header">
+                        <h3 class="project-title">TimeSheet</h3>
+                    </div>
+                    <p class="project-description">
+                        App desktop locale per il tracciamento delle ore lavorative: dashboard, task board,
+                        vista calendario, export CSV e input in linguaggio naturale tramite un modello AI
+                        self-hosted. Database SQLite sul disco, distribuita come singolo .exe portabile.
+                    </p>
+                    <div class="project-tech-details">
+                        <span class="tech-detail">Input AI in linguaggio naturale</span>
+                        <span class="tech-detail">Email IMAP → voci di timesheet</span>
+                        <span class="tech-detail">Portable .exe, zero cloud</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Next.js</span>
+                        <span class="project-tag">Electron</span>
+                        <span class="project-tag">Prisma</span>
+                        <span class="project-tag">SQLite</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="ProjectModal.open('timesheet')">Dettagli</button>
+                        <a class="project-link" href="https://github.com/Gioixxx/TimeSheet" target="_blank"
+                            rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card visible" data-tags="dotnet,desktop">
+                    <div class="project-header">
+                        <h3 class="project-title">MonitorExtender</h3>
+                    </div>
+                    <p class="project-description">
+                        Trasforma un tablet Android nello schermo di un PC Windows via cavo USB o Wi-Fi.
+                        Il PC cattura lo schermo e lo serve come stream MJPEG su HTTP; dal tablet si comanda
+                        anche il mouse. Server in C#, app Android in Kotlin, installer Windows e release
+                        automatizzate.
+                    </p>
+                    <div class="project-tech-details">
+                        <span class="tech-detail">36,8 Mbit/s via USB (misurati)</span>
+                        <span class="tech-detail">Input mouse solo da loopback</span>
+                        <span class="tech-detail">CI e release su GitHub</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">C# / .NET</span>
+                        <span class="project-tag">Kotlin</span>
+                        <span class="project-tag">MJPEG</span>
+                        <span class="project-tag">GitHub Actions</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="ProjectModal.open('monitorextender')">Dettagli</button>
+                        <a class="project-link" href="https://github.com/Gioixxx/MonitorExtender" target="_blank"
+                            rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card visible" data-tags="docker,ai,integrazioni,python">
+                    <div class="project-header">
+                        <h3 class="project-title">iAPi — Gateway LLM self-hosted</h3>
+                    </div>
+                    <p class="project-description">
+                        Gateway HTTP che serve un modello IA piccolo su un Raspberry Pi 5, così che gli altri
+                        container Docker della LAN facciano inferenza senza parlare direttamente col backend.
+                        Provider selezionabile tra Ollama e LM Studio, risposte in streaming, interfaccia web
+                        servita dal gateway stesso.
+                    </p>
+                    <div class="project-tech-details">
+                        <span class="tech-detail">Streaming NDJSON</span>
+                        <span class="tech-detail">Provider LLM selezionabile</span>
+                        <span class="tech-detail">Download automatico del modello</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">FastAPI</span>
+                        <span class="project-tag">Docker</span>
+                        <span class="project-tag">Ollama</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="ProjectModal.open('iapi')">Dettagli</button>
+                        <a class="project-link" href="https://github.com/Gioixxx/iAPi" target="_blank"
+                            rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card visible" data-tags="react,desktop">
+                    <div class="project-header">
+                        <h3 class="project-title">My Road — L'Ascesa</h3>
+                    </div>
+                    <p class="project-description">
+                        Simulatore testuale della carriera di un calciatore, giocabile da browser o come .exe
+                        per Windows. Motore di simulazione puro e testato, con eventi probabilistici,
+                        124 club in 9 paesi e salvataggi locali: nessun backend.
+                    </p>
+                    <div class="project-tech-details">
+                        <span class="tech-detail">Motore di simulazione testato</span>
+                        <span class="tech-detail">Export statico, nessun backend</span>
+                        <span class="tech-detail">Launcher Windows con WebView2</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Next.js</span>
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">TypeScript</span>
+                        <span class="project-tag">Tailwind</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="ProjectModal.open('myroad')">Dettagli</button>
+                        <a class="project-link" href="https://github.com/Gioixxx/MyRoad" target="_blank"
+                            rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card visible" data-tags="dotnet">
+                    <div class="project-header">
+                        <h3 class="project-title">Vektor — SaaS a plugin</h3>
+                    </div>
+                    <p class="project-description">
+                        Piattaforma SaaS "tutto a plugin": un kernel headless che non implementa funzionalità di
+                        business ma definisce gli standard di aggancio. Ogni cliente riceve un'istanza dedicata,
+                        assemblata come distribuzione di kernel, plugin e configurazione. In sviluppo.
+                    </p>
+                    <div class="project-tech-details">
+                        <span class="tech-detail">Sei primitive di estensione</span>
+                        <span class="tech-detail">Plugin isolati dal kernel via contratti</span>
+                        <span class="tech-detail">Manifest YAML per distribuzione</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">.NET 8</span>
+                        <span class="project-tag">PostgreSQL</span>
+                        <span class="project-tag">Plugin architecture</span>
+                        <span class="project-tag">NuGet</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="ProjectModal.open('vektor')">Dettagli</button>
+                    </div>
+                </div>
+
+                <div class="project-card visible" data-tags="python,docker">
+                    <div class="project-header">
+                        <h3 class="project-title">InsideTrade — Bot di segnali crypto</h3>
+                    </div>
+                    <p class="project-description">
+                        Bot Python che scarica le candele da Binance per BTC, ETH e SOL e individua finestre di
+                        accumulo sui ribassi: il trend sul daily e il momentum intraday assegnano un tier di
+                        segnale, notificato su Telegram con la motivazione. Non esegue ordini: la decisione
+                        resta manuale.
+                    </p>
+                    <div class="project-tech-details">
+                        <span class="tech-detail">Messaggi/giorno da 37,2 a 4,5 (misurato)</span>
+                        <span class="tech-detail">Taratura dei filtri su storico</span>
+                        <span class="tech-detail">Diario DCA via comandi Telegram</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Binance API</span>
+                        <span class="project-tag">Telegram</span>
+                        <span class="project-tag">Docker</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="ProjectModal.open('insidetrade')">Dettagli</button>
+                    </div>
+                </div>
+
+                <div class="project-card visible" data-tags="python,ai">
+                    <div class="project-header">
+                        <h3 class="project-title">claude-libs — Tooling per Claude Code</h3>
+                    </div>
+                    <p class="project-description">
+                        Libreria riusabile per Claude Code: moduli Markdown per stack, slash command, skill e
+                        template di memoria, più un motore di setup dichiarativo e idempotente che porta ogni
+                        progetto allo stato descritto in <code>workspace.json</code>. Include server MCP in Python
+                        e un provider LLM locale selezionabile tra Ollama e LM Studio.
+                    </p>
+                    <div class="project-tech-details">
+                        <span class="tech-detail">Setup dichiarativo e idempotente</span>
+                        <span class="tech-detail">Server MCP in Python</span>
+                        <span class="tech-detail">Release semantiche con CI</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">PowerShell</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">MCP</span>
+                        <span class="project-tag">GitHub Actions</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="ProjectModal.open('claude-libs')">Dettagli</button>
                     </div>
                 </div>
             </div>
@@ -447,7 +640,7 @@
                 <p style="color: var(--text-secondary); margin-bottom: 2rem;">Email: <a
                         href="mailto:mantellogioele@gmail.com" class="email-link">mantellogioele@gmail.com</a></p>
                 <div class="social-links" style="justify-content: center;">
-                    <a href="https://github.com/gioix" title="GitHub" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/Gioixxx" title="GitHub" target="_blank" rel="noopener">GitHub</a>
                     <a href="https://www.linkedin.com/in/gioix" title="LinkedIn" target="_blank"
                         rel="noopener">LinkedIn</a>
                 </div>
@@ -463,7 +656,7 @@
                     &copy; <span id="current-year">2026</span> Gioele Mantello. Costruito con HTML, CSS e &#9749;
                 </p>
                 <div class="social-links">
-                    <a href="https://github.com/gioix" title="GitHub" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/Gioixxx" title="GitHub" target="_blank" rel="noopener">GitHub</a>
                     <a href="https://www.linkedin.com/in/gioix" title="LinkedIn" target="_blank"
                         rel="noopener">LinkedIn</a>
                     <a href="mailto:mantellogioele@gmail.com" title="Email">Email</a>

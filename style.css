@@ -1311,6 +1311,7 @@ button:focus-visible,
     font-family: var(--font-mono);
     color: var(--text-secondary);
     font-size: 0.9rem;
+    text-decoration: none;
     transition: all var(--transition-fast);
     display: inline-flex;
     align-items: center;

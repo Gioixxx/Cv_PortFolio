@@ -129,7 +129,7 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
 <span class="cmd-accent">Contatti</span>
 <span class="cmd-muted">────────────────────────────────</span>
 <span class="cmd-highlight">Email:</span>    mantellogioele@gmail.com
-<span class="cmd-highlight">GitHub:</span>   github.com/gioix
+<span class="cmd-highlight">GitHub:</span>   github.com/Gioixxx
 <span class="cmd-highlight">LinkedIn:</span> linkedin.com/in/gioix
 
 <span class="cmd-muted">Digita</span> <span class="cmd-cmd">goto contatti</span> <span class="cmd-muted">per la sezione contatti</span>`,
@@ -139,8 +139,15 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
 <span class="cmd-muted">────────────────────────────────</span>
 <span class="cmd-highlight">[1]</span> Sistema Gestionale Multi-Tenant    <span class="cmd-tag">ASP.NET Core</span> <span class="cmd-tag">Angular</span> <span class="cmd-tag">CQRS</span>
 <span class="cmd-highlight">[2]</span> Sistema Integrazioni FTP/SFTP      <span class="cmd-tag">Hangfire</span> <span class="cmd-tag">Docker</span> <span class="cmd-tag">SFTP</span>
-<span class="cmd-highlight">[3]</span> Gestionale Tabaccherie             <span class="cmd-tag">.NET/WPF</span> <span class="cmd-tag">SQL Server</span> <span class="cmd-tag">MVVM</span>
+<span class="cmd-highlight">[3]</span> Gestionale Tabaccherie             <span class="cmd-tag">.NET/WPF</span> <span class="cmd-tag">SQLite</span> <span class="cmd-tag">OCR</span>
 <span class="cmd-highlight">[4]</span> Gestionale Password                <span class="cmd-tag">Blazor</span> <span class="cmd-tag">IdentityServer</span> <span class="cmd-tag">Cryptography</span>
+<span class="cmd-highlight">[5]</span> TimeSheet                          <span class="cmd-tag">Next.js</span> <span class="cmd-tag">Electron</span> <span class="cmd-tag">Prisma</span>
+<span class="cmd-highlight">[6]</span> MonitorExtender                    <span class="cmd-tag">C#</span> <span class="cmd-tag">Kotlin</span> <span class="cmd-tag">MJPEG</span>
+<span class="cmd-highlight">[7]</span> iAPi - Gateway LLM                 <span class="cmd-tag">FastAPI</span> <span class="cmd-tag">Docker</span> <span class="cmd-tag">Ollama</span>
+<span class="cmd-highlight">[8]</span> My Road - L'Ascesa                <span class="cmd-tag">Next.js</span> <span class="cmd-tag">TypeScript</span> <span class="cmd-tag">Tailwind</span>
+<span class="cmd-highlight">[9]</span> Vektor - SaaS a plugin             <span class="cmd-tag">.NET 8</span> <span class="cmd-tag">PostgreSQL</span> <span class="cmd-tag">Plugin</span>
+<span class="cmd-highlight">[10]</span> InsideTrade - Bot di segnali      <span class="cmd-tag">Python</span> <span class="cmd-tag">Binance</span> <span class="cmd-tag">Telegram</span>
+<span class="cmd-highlight">[11]</span> claude-libs - Tooling Claude Code <span class="cmd-tag">PowerShell</span> <span class="cmd-tag">Python</span> <span class="cmd-tag">MCP</span>
 
 <span class="cmd-muted">Digita</span> <span class="cmd-cmd">goto portfolio</span> <span class="cmd-muted">per i dettagli</span>`,
 
@@ -288,7 +295,7 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
         } else if (command === 'download' && args[0] === 'cv') {
             const link = document.createElement('a');
             link.href = 'cv.pdf';
-            link.download = 'cv.pdf';
+            link.download = 'Giuseppe-Gioele-Mantello-CV.pdf';
             link.click();
             result = `<span class="cmd-accent">Download CV avviato...</span>`;
         } else if (command === 'theme') {
@@ -692,24 +699,27 @@ const ProjectModal = {
         },
         'tabaccherie': {
             title: 'Gestionale Tabaccherie',
-            tags: ['.NET / WPF', 'SQL Server', 'Entity Framework', 'MVVM'],
+            tags: ['.NET 8 / WPF', 'EF Core + SQLite', 'MVVM', 'OCR'],
             description: `
-                Software desktop per la gestione completa del punto vendita, ottimizzato per schermi touch-screen.
-                L'applicazione semplifica le operazioni quotidiane del tabaccaio, dall'emissione dello scontrino alla gestione automatica degli ordini verso i monopoli.
-                
-                Particolare attenzione è stata data all'usabilità (UX) per permettere operazioni veloci anche nei momenti di picco.
+                Applicativo desktop Windows per la gestione di tabaccherie italiane, conforme alle normative ADM e Logista.
+                Copre l'intero ciclo operativo: listino prodotti, magazzino, ordini in transito, vendite e inventari.
+
+                Il listino ufficiale si scarica direttamente dal portale Logista e le consegne si caricano fotografando la fattura con lo smartphone: l'analisi avviene in locale con l'OCR nativo di Windows, senza servizi esterni.
             `,
             features: [
-                'Interfaccia Touch-First ad alto contrasto',
-                'Lettura codici a barre e QR Code',
-                'Integrazione Registratori Telematici (RT)',
-                'Calcolo automatico aggio e ricavi',
-                'Algoritmo predittivo per il riordino scorte',
-                'Backup automatico in cloud'
+                'Sincronizzazione del listino dal portale Logista e import da Excel ADM/Logista',
+                'Storico prezzi automatico e immutabile',
+                'Barcode EAN-13 con doppio codice (stecca e pacchetto) e lettore USB',
+                'Consegne da foto della fattura con OCR offline e pairing via QR code',
+                'Dashboard con vendite degli ultimi 7 giorni, sottoscorte e ordini in transito',
+                'Gratta e Vinci, valori bollati e inventari ciclici con calcolo delle varianze',
+                'Backup manuale e automatico, con integrazione OneDrive / Google Drive',
+                'Aggiornamento automatico con canale Stabile o Beta'
             ],
             tech: [
-                'WPF', 'XAML', 'C#', 'MVVM Toolkit',
-                'SQL Server LocalDB', 'Dapper', 'Syncfusion Controls'
+                '.NET 8', 'WPF', 'C#', 'CommunityToolkit.Mvvm', 'Entity Framework Core 8',
+                'SQLite', 'MaterialDesignThemes', 'LiveCharts', 'HtmlAgilityPack',
+                'ZXing.Net', 'Windows.Media.Ocr', 'Inno Setup'
             ]
         },
         'password': {
@@ -732,6 +742,153 @@ const ProjectModal = {
             tech: [
                 'Blazor WebAssembly', '.NET 8', 'IdentityServer4',
                 'Web Crypto API', 'SignalR', 'SQL Server'
+            ]
+        },
+        'timesheet': {
+            title: 'TimeSheet',
+            tags: ['Next.js', 'Electron', 'Prisma', 'SQLite', 'AI locale'],
+            description: `
+                App desktop per il tracciamento delle ore lavorative pensata per essere completamente locale: il database SQLite sta sul disco dell'utente e anche l'AI opzionale gira su un gateway self-hosted nella rete locale, quindi nessun dato lascia la LAN.
+
+                Si distribuisce come singolo .exe portabile per Windows, senza installer. Il codice è open source (MIT).
+            `,
+            features: [
+                'Registrazione rapida con cliente, progetto, tag, tipo di attività e durata',
+                'Input in linguaggio naturale: una frase come "2 ore di supporto al cliente Rossi ieri" compila il form',
+                'Task board kanban e vista calendario con il riepilogo mensile delle ore',
+                'Ricerca globale con risultati live e filtri per mese, attività e cliente',
+                'Export CSV del timesheet di qualsiasi mese',
+                'Automazione via email: polling IMAP che converte i messaggi in voci di timesheet',
+                'Funzionamento completo anche senza gateway AI configurato'
+            ],
+            tech: [
+                'Next.js 16', 'React 19', 'Electron 36', 'Prisma 6', 'SQLite',
+                'React Hook Form', 'Zod', 'electron-builder', 'iAPi (Ollama)'
+            ]
+        },
+        'monitorextender': {
+            title: 'MonitorExtender',
+            tags: ['C# / .NET', 'Kotlin', 'MJPEG', 'GitHub Actions'],
+            description: `
+                Trasforma un tablet Android nello schermo di un PC Windows, via cavo USB o via Wi-Fi, e permette di comandare il mouse del PC dal touchscreen. Nato per un caso d'uso preciso: un mini PC senza monitor con il tablet come unico schermo.
+
+                Il PC cattura lo schermo, lo ridimensiona, lo codifica in JPEG e lo serve come stream multipart su HTTP: ogni frame è un'immagine indipendente, quindi lo stream si può guardare anche da un browser qualsiasi.
+            `,
+            features: [
+                'Due collegamenti con parametri diversi: USB a 36,8 Mbit/s misurati (30 fps), Wi-Fi a 13,8 Mbit/s (720p, 20 fps)',
+                'Controllo del mouse con gesti touch: click e trascinamento, rotella a due dita, tasto destro',
+                'Comandi accettati solo da loopback: trasmettere lo schermo è passivo, accettare input è un telecomando',
+                'Ricerca automatica del server in rete tramite UDP',
+                'Modalità opzionale con un vero secondo monitor esteso, tramite un driver di display virtuale di terze parti',
+                'Installer Windows, build e release automatizzate con GitHub Actions'
+            ],
+            tech: [
+                'C# / .NET', 'Desktop Duplication', 'Kotlin (app Android)', 'HTTP MJPEG',
+                'UDP', 'ADB', 'Inno Setup', 'GitHub Actions', 'PowerShell'
+            ]
+        },
+        'iapi': {
+            title: 'iAPi — Gateway LLM self-hosted',
+            tags: ['Python', 'FastAPI', 'Docker', 'Ollama', 'LM Studio'],
+            description: `
+                Gateway HTTP che serve un modello IA piccolo su un Raspberry Pi 5, così che altri container Docker in LAN possano fare richieste di inferenza (scrittura di email, testi brevi) senza parlare direttamente con il backend.
+
+                Il backend si sceglie in modo esplicito con una variabile di configurazione, mai in automatico: con due server attivi, quale modello risponde non deve dipendere da quale dei due ha risposto per primo.
+            `,
+            features: [
+                'Endpoint di generazione e di streaming (NDJSON) con status HTTP distinti per modello non pronto, backend giù e timeout',
+                'Provider selezionabile tra Ollama in container e LM Studio sull\'host, via API compatibile OpenAI',
+                'Download del modello automatico al primo avvio e dopo il reset di un volume, in background e senza bloccare lo startup',
+                'LM Studio in ascolto solo sull\'interfaccia del bridge Docker: raggiungibile dai container, non dalla LAN',
+                'Disattivazione del "thinking" dei modelli reasoning: risposta misurata 3,6 volte più veloce su un testo di lunghezza email',
+                'Il campo model riporta sempre il modello che ha davvero risposto, con warning se differisce da quello richiesto',
+                'Interfaccia web per email, risposte e correzioni, servita dal gateway stesso'
+            ],
+            tech: [
+                'Python', 'FastAPI', 'Uvicorn', 'httpx', 'Pydantic',
+                'Docker Compose', 'Ollama', 'LM Studio', 'systemd', 'Raspberry Pi 5'
+            ]
+        },
+        'myroad': {
+            title: 'My Road — L\'Ascesa',
+            tags: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
+            description: `
+                Simulatore testuale della carriera di un calciatore: scelte narrative, statistiche, trasferimenti, trofei e convocazioni in nazionale, tutto in italiano e con nomi reali di club e competizioni.
+
+                Non c'è un backend: i salvataggi restano nel browser o nell'eseguibile locale. Il gioco si distribuisce anche come .exe per Windows tramite GitHub Release.
+            `,
+            features: [
+                'Motore di simulazione puro, separato dalla UI, con eventi probabilistici: offerte di mercato, infortuni, crisi di club, nazionale',
+                'Script di taratura che simula 2000 carriere per calibrare le probabilità del motore',
+                '124 club in 9 paesi, archivio multi-carriera, Hall of Fame e record personali',
+                'Tre ritmi di gioco e creazione del personaggio (ruolo, nazionalità, piede)',
+                'Overlay celebrativi, dark mode, musica di sottofondo e salvataggio locale',
+                'Launcher Windows che incapsula l\'export statico in una WebView2'
+            ],
+            tech: [
+                'Next.js 16 (App Router)', 'React 19', 'TypeScript', 'Tailwind CSS v4',
+                'Vitest', 'Testing Library', 'Static export', '.NET 10 + WebView2'
+            ]
+        },
+        'vektor': {
+            title: 'Vektor — SaaS a plugin',
+            tags: ['.NET 8', 'PostgreSQL', 'Plugin architecture', 'NuGet'],
+            description: `
+                SaaS "tutto a plugin": un kernel headless che non implementa funzionalità di business, ma definisce gli standard di aggancio. Tutto ciò che non è nel kernel è, per definizione, un plugin. Ogni cliente riceve un'istanza dedicata, assemblata come distribuzione: kernel, insieme di plugin e configurazione.
+
+                Progetto in sviluppo e repository privato. L'architettura è descritta in una specifica scritta prima del codice, e le decisioni sono tracciate come ADR.
+            `,
+            features: [
+                'Kernel headless: nessuna UI e nessun protocollo di rete cablato, anche gateway REST, autenticazione e scheduler sono plugin di sistema',
+                'Sei primitive di aggancio: esporre e consumare servizi, emettere e sottoscrivere eventi, intercettare con hook, contribuire in modo dichiarativo',
+                'I plugin dipendono solo dal progetto dei contratti, mai dal core né da altri plugin: le dipendenze vivono nei manifest e si risolvono a runtime',
+                'Manifest YAML validato con JSON Schema e distribuzioni per cliente',
+                'Persistenza progettata su PostgreSQL con schema per plugin e outbox per gli eventi durevoli',
+                'API del kernel versionata semanticamente fin dal primo giorno'
+            ],
+            tech: [
+                '.NET 8', 'C#', 'PostgreSQL', 'NuGet (plugin come pacchetti)',
+                'YAML + JSON Schema', 'Angular + Module Federation (pianificato)'
+            ]
+        },
+        'insidetrade': {
+            title: 'InsideTrade — Bot di segnali crypto',
+            tags: ['Python', 'Binance API', 'Telegram', 'Docker'],
+            description: `
+                Bot di accumulo sui ribassi per acquisti manuali. Scarica le candele da Binance per BTC, ETH e SOL in euro e lavora su due timeframe: la SMA200 sul daily definisce il regime di trend, mentre RSI14 e prezzo sulla candela corta catturano il momentum intraday.
+
+                Da regime e momentum assegna un tier e notifica su Telegram solo quando entra in un tier di acquisto, spiegando il perché. Non è trading automatico né consulenza finanziaria: la decisione e l'importo restano all'utente. Repository privato.
+            `,
+            features: [
+                'Tre tier di segnale (A, B, C) con notifica solo all\'ingresso, mai al ritorno a neutro',
+                'Isteresi sull\'RSI e filtro di convinzione basato su conferme indipendenti: da 37,2 a 4,5 messaggi al giorno su 1000 candele da 15 minuti',
+                'Taratura dei filtri su storico reale con un comando di replay',
+                'Il messaggio gradua la forza del segnale in base alla confluenza tra timeframe e segnala il volume di capitolazione',
+                'Diario degli acquisti manuali via comandi Telegram, con prezzo medio di carico al netto della commissione e P&L',
+                'Alert di uscita su stop loss, take profit e trailing; il bot risponde solo alla chat configurata'
+            ],
+            tech: [
+                'Python', 'Binance API', 'Telegram Bot API', 'Docker', 'SMA / RSI'
+            ]
+        },
+        'claude-libs': {
+            title: 'claude-libs — Tooling per Claude Code',
+            tags: ['PowerShell', 'Python', 'MCP', 'GitHub Actions'],
+            description: `
+                Libreria riusabile per Claude Code: moduli Markdown per stack, slash command, skill e template di memoria. Ogni progetto importa solo i moduli che gli servono e un motore di setup lo porta allo stato descritto nel suo file di configurazione.
+
+                Include server MCP in Python e un client condiviso per usare un modello locale, scelto tra Ollama e LM Studio. Repository privato.
+            `,
+            features: [
+                'Moduli Markdown a due livelli per stack (.NET, Angular, Next.js, Spring, FastAPI, Electron e altri)',
+                'Setup dichiarativo: workspace.json descrive lo stato, reconcile lo applica in modo idempotente e con modalità dry-run per rilevare il drift',
+                'Server MCP in Python: ricerca semantica dei moduli, sidecar per task meccanici su LLM locale, deploy e rilascio',
+                'Provider LLM locale selezionabile tra Ollama e LM Studio, con client condiviso e test di non regressione',
+                'Validazione e test automatizzati in CI; rilasci con versionamento semantico'
+            ],
+            tech: [
+                'PowerShell', 'Python', 'Bash', 'MCP', 'GitHub Actions',
+                'Ollama', 'LM Studio', 'C# / WPF (GUI)'
             ]
         }
     },
