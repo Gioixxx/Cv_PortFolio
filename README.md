@@ -25,8 +25,20 @@ Sito web portfolio personale per presentare competenze, progetti ed esperienze c
 ```
 ├── index.html    # Pagina principale
 ├── style.css     # Stili e temi
-├── script.js     # Logica interattiva
+├── script.js     # Logica interattiva (filtri, modale progetti, terminale)
+├── cv.pdf        # CV scaricabile, generato da cv/cv.html
+├── cv/
+│   ├── cv.html       # Sorgente del CV (A4, stampa)
+│   └── build-cv.ps1  # Rigenera cv.pdf con Edge/Chrome headless
 └── README.md
+```
+
+## CV scaricabile
+
+`cv.pdf` non si modifica a mano: si aggiorna `cv/cv.html` e si rigenera il PDF.
+
+```powershell
+powershell -File cv/build-cv.ps1
 ```
 
 ## Sezioni

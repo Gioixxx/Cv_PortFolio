@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giuseppe Gioele Mantello — Senior Full Stack Developer</title>
+    <meta name="author" content="Giuseppe Gioele Mantello">
+    <style>
+        /* Sorgente del CV scaricabile (../cv.pdf). Rigenera il PDF con cv/build-cv.ps1. */
+        :root {
+            --ink: #1b1f24;
+            --muted: #5b6570;
+            --accent: #0f766e;
+            --rule: #d5dbe0;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+            font-size: 9.4pt;
+            line-height: 1.42;
+            color: var(--ink);
+            background: #fff;
+        }
+
+        .page {
+            width: 210mm;
+            padding: 13mm 16mm 12mm;
+        }
+
+        /* Intestazione */
+        header {
+            padding-bottom: 4.5mm;
+            border-bottom: 1.6pt solid var(--accent);
+        }
+
+        h1 {
+            font-size: 24pt;
+            line-height: 1.1;
+            letter-spacing: -0.3pt;
+            font-weight: 700;
+        }
+
+        .role {
+            margin-top: 1.5mm;
+            font-size: 11.5pt;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .contacts {
+            margin-top: 2.6mm;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 5mm;
+            font-size: 9pt;
+            color: var(--muted);
+        }
+
+        .contacts a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Sezioni */
+        section {
+            margin-top: 5.2mm;
+        }
+
+        h2 {
+            font-size: 8.6pt;
+            font-weight: 700;
+            letter-spacing: 1.3pt;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding-bottom: 1mm;
+            margin-bottom: 2.4mm;
+            border-bottom: 0.6pt solid var(--rule);
+        }
+
+        p+p {
+            margin-top: 1.6mm;
+        }
+
+        /* Competenze */
+        .skills {
+            display: grid;
+            grid-template-columns: 31mm 1fr;
+            gap: 1.5mm 4mm;
+        }
+
+        .skills dt {
+            font-weight: 700;
+        }
+
+        .skills dd {
+            color: var(--ink);
+        }
+
+        /* Esperienza e progetti */
+        .entry {
+            break-inside: avoid;
+        }
+
+        .entry+.entry {
+            margin-top: 2.6mm;
+        }
+
+        .entry-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 4mm;
+        }
+
+        .entry-title {
+            font-weight: 700;
+        }
+
+        .entry-title .stack {
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        .entry-link {
+            font-size: 8.4pt;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .entry p {
+            margin-top: 0.6mm;
+        }
+
+        .lead-in {
+            margin-bottom: 2.6mm;
+        }
+
+        .edu {
+            display: flex;
+            justify-content: space-between;
+            gap: 4mm;
+        }
+
+        .edu+.edu {
+            margin-top: 1.4mm;
+        }
+
+        .edu .where {
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <h1>Giuseppe Gioele Mantello</h1>
+            <div class="role">Senior Full Stack Developer &middot; .NET &amp; Frontend moderno</div>
+            <div class="contacts">
+                <a href="mailto:mantellogioele@gmail.com">mantellogioele@gmail.com</a>
+                <a href="https://github.com/Gioixxx">github.com/Gioixxx</a>
+                <a href="https://gioixxx.github.io/Cv_PortFolio/">gioixxx.github.io/Cv_PortFolio</a>
+            </div>
+        </header>
+
+        <section>
+            <h2>Profilo</h2>
+            <p>
+                Senior Full Stack Developer con una solida formazione informatica e diversi anni di esperienza
+                nello sviluppo di applicazioni web e software complessi: sistemi gestionali, integrazioni con
+                sistemi legacy, piattaforme configurabili e applicazioni desktop.
+            </p>
+            <p>
+                Il mio approccio &egrave; pragmatico e orientato al valore: soluzioni pulite, leggibili e
+                sostenibili nel tempo, con attenzione ad architettura, sicurezza ed esperienza utente. Mi trovo
+                a mio agio sia nel lavoro tecnico approfondito sia nel confronto con stakeholder e utenti finali.
+            </p>
+        </section>
+
+        <section>
+            <h2>Competenze</h2>
+            <dl class="skills">
+                <dt>Backend</dt>
+                <dd>C#, .NET / ASP.NET Core, Entity Framework Core, API REST, CQRS, Event Sourcing, sistemi
+                    multi-tenant, autenticazione e autorizzazione, architetture a plugin</dd>
+                <dt>Database</dt>
+                <dd>PostgreSQL, MySQL, SQLite</dd>
+                <dt>Frontend</dt>
+                <dd>Angular, React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS</dd>
+                <dt>Desktop e mobile</dt>
+                <dd>WPF (MVVM), Electron, WebView2, Android (Kotlin)</dd>
+                <dt>Python e AI locale</dt>
+                <dd>Python, FastAPI, Ollama, LM Studio, server MCP</dd>
+                <dt>Integrazioni</dt>
+                <dd>FTP, SFTP, AS400, job schedulati, automazione dei processi, monitoraggio</dd>
+                <dt>DevOps e qualit&agrave;</dt>
+                <dd>Git, Docker, CI/CD con GitHub Actions, PowerShell, test automatici, documentazione tecnica</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>Esperienza professionale</h2>
+            <p class="lead-in">
+                Sviluppo di applicazioni web enterprise, sistemi gestionali, dashboard operative, piattaforme
+                configurabili e integrazioni con sistemi legacy, in contesti aziendali e in progetti personali
+                complessi.
+            </p>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">Sistema gestionale multi-tenant
+                        <span class="stack">&mdash; ASP.NET Core, Angular, PostgreSQL</span></span>
+                </div>
+                <p>Piattaforma enterprise per ordini, clienti e fatturazione con architettura CQRS, separazione
+                    completa dei dati per tenant e autorizzazione granulare basata su ruoli e permessi.</p>
+            </div>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">Sistema di integrazioni FTP/SFTP
+                        <span class="stack">&mdash; ASP.NET Core, Hangfire, Docker</span></span>
+                </div>
+                <p>Framework configurabile per il trasferimento file tra sistemi eterogenei (FTP, SFTP, AS400),
+                    con scheduling flessibile, retry configurabile e dashboard di monitoraggio.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Progetti selezionati</h2>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">Gestionale Tabaccherie
+                        <span class="stack">&mdash; .NET 8, WPF, EF Core, SQLite</span></span>
+                    <span class="entry-link">github.com/Gioixxx/Gestionale-Tabaccherie</span>
+                </div>
+                <p>Applicativo desktop per tabaccherie conforme alle normative ADM/Logista: sincronizzazione del
+                    listino dal portale Logista, magazzino, ordini e vendite con lettore barcode, consegne da
+                    foto della fattura con OCR offline, backup su OneDrive e Google Drive.</p>
+            </div>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">Vektor
+                        <span class="stack">&mdash; .NET 8, PostgreSQL</span></span>
+                    <span class="entry-link">repository privato &middot; in sviluppo</span>
+                </div>
+                <p>SaaS &ldquo;tutto a plugin&rdquo; con kernel headless: sei primitive di aggancio, plugin che
+                    dipendono solo dai contratti e distribuzioni per cliente descritte da manifest YAML.</p>
+            </div>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">TimeSheet
+                        <span class="stack">&mdash; Next.js, Electron, Prisma, SQLite</span></span>
+                    <span class="entry-link">github.com/Gioixxx/TimeSheet</span>
+                </div>
+                <p>App desktop locale per il tracciamento delle ore, distribuita come .exe portabile: input in
+                    linguaggio naturale tramite un modello AI self-hosted, export CSV e polling IMAP delle email.</p>
+            </div>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">iAPi
+                        <span class="stack">&mdash; Python, FastAPI, Docker</span></span>
+                    <span class="entry-link">github.com/Gioixxx/iAPi</span>
+                </div>
+                <p>Gateway HTTP che serve un LLM su Raspberry Pi 5 ai container della LAN: provider selezionabile
+                    tra Ollama e LM Studio, streaming NDJSON e download automatico del modello.</p>
+            </div>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">MonitorExtender
+                        <span class="stack">&mdash; C#, Kotlin, MJPEG</span></span>
+                    <span class="entry-link">github.com/Gioixxx/MonitorExtender</span>
+                </div>
+                <p>Un tablet Android come schermo di un PC Windows via USB o Wi-Fi, con controllo del mouse dal
+                    touchscreen (36,8 Mbit/s misurati via cavo). Installer, CI e release su GitHub.</p>
+            </div>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">InsideTrade
+                        <span class="stack">&mdash; Python, Binance API, Telegram</span></span>
+                    <span class="entry-link">repository privato</span>
+                </div>
+                <p>Bot di segnali di accumulo crypto con notifiche Telegram: filtri di isteresi e convinzione,
+                    tarati su storico, riducono i messaggi da 37,2 a 4,5 al giorno.</p>
+            </div>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">claude-libs
+                        <span class="stack">&mdash; PowerShell, Python, MCP</span></span>
+                    <span class="entry-link">repository privato</span>
+                </div>
+                <p>Libreria di moduli, skill e server MCP per Claude Code, con setup dichiarativo e idempotente,
+                    CI e rilasci con versionamento semantico.</p>
+            </div>
+            <div class="entry">
+                <div class="entry-head">
+                    <span class="entry-title">My Road &mdash; L'Ascesa
+                        <span class="stack">&mdash; Next.js, React, TypeScript</span></span>
+                    <span class="entry-link">github.com/Gioixxx/MyRoad</span>
+                </div>
+                <p>Simulatore della carriera di un calciatore, senza backend: motore di simulazione puro e testato
+                    con Vitest, distribuito anche come .exe con launcher WebView2.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Formazione</h2>
+            <div class="edu">
+                <span><strong>Studi universitari in Informatica</strong></span>
+                <span class="where">Universit&agrave; degli Studi di Perugia</span>
+            </div>
+            <div class="edu">
+                <span><strong>Diploma di Perito Informatico</strong></span>
+                <span class="where">ITIS &ldquo;Euclide&rdquo;, Caltagirone</span>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
