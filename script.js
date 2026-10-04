@@ -130,7 +130,7 @@ Costruisco applicazioni scalabili, pulite e orientate al prodotto.
 <span class="cmd-muted">────────────────────────────────</span>
 <span class="cmd-highlight">Email:</span>    mantellogioele@gmail.com
 <span class="cmd-highlight">GitHub:</span>   github.com/Gioixxx
-<span class="cmd-highlight">LinkedIn:</span> linkedin.com/in/gioix
+<span class="cmd-highlight">LinkedIn:</span> linkedin.com/in/giuseppe-gioele-mantello-002a9aab
 
 <span class="cmd-muted">Digita</span> <span class="cmd-cmd">goto contatti</span> <span class="cmd-muted">per la sezione contatti</span>`,
 
