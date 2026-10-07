@@ -1,3 +1,8 @@
+---
+description: "Protocollo debug strutturato"
+argument-hint: <errore, file o endpoint>
+disable-model-invocation: true
+---
 # /debug — Protocollo debug strutturato
 
 ## Input

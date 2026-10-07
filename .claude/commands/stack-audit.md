@@ -1,3 +1,8 @@
+---
+description: "Verifica coerenza stack e contesto caricato"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /stack-audit — Verifica coerenza stack e contesto caricato
 
 Confronta lo stack reale rilevato dal progetto con i moduli claude-libs caricati nel CLAUDE.md. Evidenzia mismatch, moduli mancanti o ridondanti con suggerimenti pratici.

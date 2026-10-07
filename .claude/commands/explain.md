@@ -1,3 +1,9 @@
+---
+description: "Spiega il codice"
+argument-hint: [file o simbolo]
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /explain — Spiega il codice
 
 ## Input

@@ -1,3 +1,8 @@
+---
+description: "Diagnostica RTK"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /rtk-check — Diagnostica RTK
 
 ## Input

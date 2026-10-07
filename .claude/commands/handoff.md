@@ -1,3 +1,7 @@
+---
+description: "Genera brief di passaggio sessione"
+disable-model-invocation: true
+---
 # /handoff — Genera brief di passaggio sessione
 
 Produce un brief compatto e riusabile che riassume lo stato del lavoro corrente, pensato per essere consumato nella sessione successiva da un umano o da Claude.

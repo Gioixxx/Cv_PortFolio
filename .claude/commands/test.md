@@ -1,3 +1,8 @@
+---
+description: "Genera test"
+argument-hint: [file o simbolo]
+disable-model-invocation: true
+---
 # /test — Genera test
 
 ## Input

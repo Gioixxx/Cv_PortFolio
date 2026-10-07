@@ -1,3 +1,8 @@
+---
+description: "Cerca e scrivi nel vault (memoria progetto + cervello globale)"
+argument-hint: <query o nota>
+disable-model-invocation: true
+---
 # /vault — Cerca e scrivi nel vault (memoria progetto + cervello globale)
 
 ## Input

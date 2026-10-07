@@ -1,3 +1,8 @@
+---
+description: "Ottimizza i moduli caricati nel contesto"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /context-prune — Ottimizza i moduli caricati nel contesto
 
 Analizza i moduli claude-libs attualmente caricati (CLAUDE.md + mode-override.md) e propone una versione più leggera eliminando ridondanze, moduli non pertinenti al task corrente e duplicazioni implicite.

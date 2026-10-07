@@ -1,3 +1,8 @@
+---
+description: "Mostra contesto progetto"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /context — Mostra contesto progetto
 
 ## Input

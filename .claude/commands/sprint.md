@@ -1,3 +1,8 @@
+---
+description: "Gestisce sprint corrente"
+argument-hint: [azione]
+disable-model-invocation: true
+---
 # /sprint — Gestisce sprint corrente
 
 ## Input

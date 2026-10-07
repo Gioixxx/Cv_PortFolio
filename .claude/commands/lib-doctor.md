@@ -1,3 +1,8 @@
+---
+description: "Diagnostica installazione claude-libs"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /lib-doctor — Diagnostica installazione claude-libs
 
 Verifica che l'installazione di claude-libs nel progetto corrente sia completa e funzionante. Utile sia su un progetto appena bootstrappato sia su uno già avviato.
@@ -13,14 +18,17 @@ Esegui tutti i check e poi presenta il riepilogo. Non interrompere al primo prob
 
 ### 1. Libs wiring
 - `.claude/libs/` esiste (symlink o directory reale)?
-- `.claude/libs/CLAUDE.md` è leggibile?
+- `.claude/libs/LIBS.md` è leggibile?
 - `CLAUDE.md` del progetto contiene almeno un `@.claude/libs/` reference?
+- Se `.claude/context-audit.jsonl` esiste (enforcementHooks): `python .claude/libs/scripts/hooks/context_audit.py --report --check`. Exit 1 = ⚠️ memoria di claude-libs nel preambolo o file caricati due volte; riporta i token reali all'avvio.
+- `CLAUDE.md` del progetto importa ancora `@.claude/libs/CLAUDE.md` (entry point fino alla 2.1.1)? Quel file porta nel preambolo la memoria di progetto di claude-libs (~15k token a sessione): ⚠️ `update-project.ps1 -Path .` lo sostituisce con `@.claude/libs/LIBS.md`.
 
 ### 2. Memoria progetto
 - `.claude/memory/` esiste?
 - `MEMORY.md` presente?
 - File chiave presenti: `sprint.md`, `decisions.md`, `conventions.md`?
 - Segnala file memory mancanti come warning, non errore bloccante.
+- `MEMORY.md` contiene righe `@file.md`? Ogni `@` è un import **eager**: carica il file a ogni sessione, contraddicendo il "su richiesta". Elenca i file importati con la dimensione (byte/4 ≈ token); se ce ne sono, ⚠️ propone di sostituire `@x.md` con `` `.claude/memory/x.md` `` (il wikilink `[[x]]` resta). Non riscrivere il file senza conferma: è dell'utente.
 
 ### 3. Catalogo
 - `.claude/libs/catalog.json` esiste e ha più di 10 moduli?

@@ -1,3 +1,9 @@
+---
+description: "Analisi impatto pre-coding"
+argument-hint: <descrizione del task>
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /scope — Analisi impatto pre-coding
 
 ## Input

@@ -1,3 +1,10 @@
+---
+description: "Code review"
+argument-hint: [PR | branch | file]
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+triggers: code review | revisione codice
+---
 # /review — Code review
 
 ## Input

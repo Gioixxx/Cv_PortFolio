@@ -1,3 +1,7 @@
+---
+description: "Retrospettiva sprint"
+disable-model-invocation: true
+---
 # /retrospective — Retrospettiva sprint
 
 ## Input

@@ -1,3 +1,8 @@
+---
+description: "Verifica convenzioni stile"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /style-check — Verifica convenzioni stile
 
 ## Input

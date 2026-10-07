@@ -32,6 +32,6 @@
 TODO: aggiungi note specifiche del progetto non coperte dalle librerie.
 
 <!-- claude-libs:modules:start (auto-generato — modifiche qui vengono rimosse al reconcile; aggiungi i moduli a workspace.json) -->
-@.claude/libs/CLAUDE.md
+@.claude/libs/LIBS.md
 @.claude/memory/MEMORY.md
 <!-- claude-libs:modules:end -->

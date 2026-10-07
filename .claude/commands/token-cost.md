@@ -1,3 +1,8 @@
+---
+description: "Diagnostica costo token della sessione"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /token-cost — Diagnostica costo token della sessione
 
 Misura quanto sta cachando il prefisso e quanto pesa il preambolo sempre caricato, poi propone tagli concreti. Solo diagnostica — non modifica file (come `/rtk-check`).
@@ -5,10 +10,11 @@ Misura quanto sta cachando il prefisso e quanto pesa il preambolo sempre caricat
 ## Input
 
 - `usage` dal transcript della sessione: `cache_read_input_tokens`, `cache_creation_input_tokens`, `input_tokens`, `output_tokens` (stessi campi sommati da `scripts/statusline/statusline.js`)
-- `CLAUDE.md` del progetto + i `@.claude/libs/` attivi (dimensione del preambolo fisso)
+- `.claude/context-audit.jsonl` (hook `InstructionsLoaded` di enforcementHooks): i file che Claude Code ha **davvero** caricato all'avvio, con la dimensione
+- `CLAUDE.md` del progetto + i `@.claude/libs/` attivi (dimensione del preambolo fisso, quando l'audit non c'è)
 - `~/.claude/CLAUDE.md` → `RTK.md`, `RALPH.md` (preambolo globale importato)
 - `.claude/active-mode.json` / `mode-override.md` — moduli extra del mode
-- Modello in uso (per i prezzi: Opus $5/$25, Sonnet $3/$15, Haiku $1/$5 per 1M)
+- Modello in uso (prezzi e cache read per modello: `workflows/token-economics-reference.md` §3, letti dalla fonte)
 
 ## Regole
 
@@ -22,7 +28,7 @@ Misura quanto sta cachando il prefisso e quanto pesa il preambolo sempre caricat
 ## Procedura
 
 1. Esegui `node scripts/analysis/cache-audit.js` (transcript del progetto corrente; `--last N` per più turni, `--newest` per il transcript globale più recente) → hit-rate per turno, media, trend di `input_tokens` (non cachato). Se node manca, estrai `usage` a mano dal transcript.
-2. Stima la dimensione del preambolo fisso (progetto + globali + mode).
+2. Misura il preambolo fisso: se esiste `.claude/context-audit.jsonl`, esegui `python .claude/libs/scripts/hooks/context_audit.py --report --check` (token reali all'avvio, file più pesanti; exit 1 se la memoria di claude-libs è nel preambolo o un file è caricato due volte). Senza audit, stima da `CLAUDE.md`, import e globali.
 3. Cerca silent-invalidator nel prefisso (date, UUID, JSON non ordinato, set di tool variabile).
 4. Identifica candidati: catalogo inline, moduli ridondanti (`X.md`+`X-reference.md`), task offloadabili su Ollama.
 5. Leggi `~/.claude/usage-stats-cache.json` (se esiste) → campo `ollama.sidecarCalls`/`ollama.topTool` per il riquadro ROUTING.

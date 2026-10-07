@@ -1,3 +1,8 @@
+---
+description: "Daily standup"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /standup — Daily standup
 
 ## Input

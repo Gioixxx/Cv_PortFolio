@@ -1,3 +1,8 @@
+---
+description: "Analisi struttura e architettura"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /analyze — Analisi struttura e architettura
 
 ## Input

@@ -1,3 +1,8 @@
+---
+description: "Genera messaggio di commit"
+disable-model-invocation: true
+triggers: messaggio commit | conventional commit | genera commit
+---
 # /commit — Genera messaggio di commit
 
 ## Input

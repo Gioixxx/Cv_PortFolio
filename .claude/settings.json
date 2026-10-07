@@ -40,6 +40,16 @@
           }
         ]
       }
+    ],
+    "InstructionsLoaded": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/Gioix/.claude/claude-libs/scripts/hooks/context_audit.py\""
+          }
+        ]
+      }
     ]
   }
 }

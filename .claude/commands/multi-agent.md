@@ -1,3 +1,7 @@
+---
+description: "Avvia sessione multi-agente"
+disable-model-invocation: true
+---
 # /multi-agent — Avvia sessione multi-agente
 
 ## Input

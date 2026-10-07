@@ -1,18 +1,16 @@
 {
-    "name":  "Cv_PortFolio",
-    "kit":  "custom",
-    "stack":  "custom",
-    "claudeLibsVersion":  "1.27.0",
-    "buildCommand":  "npm run build",
-    "testCommand":  "npm test",
-    "githubRepo":  "Gioixxx/Cv_PortFolio",
-    "createdAt":  "2026-07-21",
-    "features":  {
-                     "memoryOllama":  true,
-                     "libraryRouter":  true,
-                     "enforcementHooks":  true
-                 },
-    "modules":  [
-
-                ]
+    "name": "Cv_PortFolio",
+    "kit": "custom",
+    "stack": "custom",
+    "claudeLibsVersion": "2.4.1",
+    "buildCommand": "npm run build",
+    "testCommand": "npm test",
+    "githubRepo": "Gioixxx/Cv_PortFolio",
+    "createdAt": "2026-07-21",
+    "features": {
+        "memoryOllama": true,
+        "libraryRouter": true,
+        "enforcementHooks": true
+    },
+    "modules": []
 }

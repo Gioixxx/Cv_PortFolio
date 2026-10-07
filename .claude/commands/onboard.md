@@ -1,3 +1,8 @@
+---
+description: "Onboarding progetto"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /onboard — Onboarding progetto
 
 ## Input

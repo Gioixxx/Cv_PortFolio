@@ -1,3 +1,8 @@
+---
+description: "Integra LLM nel progetto"
+argument-hint: [stack]
+disable-model-invocation: true
+---
 # /ai-integrate — Integra LLM nel progetto
 
 ## Input

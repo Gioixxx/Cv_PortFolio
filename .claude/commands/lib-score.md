@@ -1,3 +1,8 @@
+---
+description: "Health score della libreria claude-libs"
+disable-model-invocation: true
+disallowed-tools: Edit Write NotebookEdit
+---
 # /lib-score — Health score della libreria claude-libs
 
 Esegue `lib_score.py` e riassume lo stato di salute della libreria (per chi sviluppa claude-libs).

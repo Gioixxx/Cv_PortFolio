@@ -1,3 +1,8 @@
+---
+description: "Genera CHANGELOG"
+argument-hint: [tag | --since=data]
+disable-model-invocation: true
+---
 # /changelog — Genera CHANGELOG
 
 ## Input

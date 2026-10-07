@@ -1,3 +1,9 @@
+---
+description: "Salva in memoria progetto"
+argument-hint: <nota da salvare>
+disable-model-invocation: true
+triggers: ricorda | salva memoria progetto
+---
 # /remember — Salva in memoria progetto
 
 ## Input

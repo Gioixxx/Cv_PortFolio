@@ -1,3 +1,8 @@
+---
+description: "Debrief sessione"
+disable-model-invocation: true
+triggers: fine sessione | debrief sessione | session end
+---
 # /session-end — Debrief sessione
 
 ## Input

@@ -1,3 +1,8 @@
+---
+description: "Genera documentazione tecnica"
+argument-hint: [file o simbolo]
+disable-model-invocation: true
+---
 # /doc — Genera documentazione tecnica
 
 ## Input

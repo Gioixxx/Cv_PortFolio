@@ -1,3 +1,8 @@
+---
+description: "Sincronizza documentazione esistente"
+argument-hint: [sessione | sprint | intervallo]
+disable-model-invocation: true
+---
 # /doc-update — Sincronizza documentazione esistente
 
 ## Input

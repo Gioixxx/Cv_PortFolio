@@ -6,3 +6,13 @@ ralph/run-state.json
 .ralph-worktrees/
 
 .claude/libs-ext/
+
+.claude/memory/consolidation-report.md
+
+.claude/dashboard.html
+
+.claude/memory/dream-proposal.md
+
+.claude/memory/.dream/
+
+.claude/context-audit.jsonl

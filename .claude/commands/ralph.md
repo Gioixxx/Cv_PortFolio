@@ -1,3 +1,8 @@
+---
+description: "Prepara sessione Ralph"
+argument-hint: [descrizione feature]
+disable-model-invocation: true
+---
 # /ralph — Prepara sessione Ralph
 
 ## Input
