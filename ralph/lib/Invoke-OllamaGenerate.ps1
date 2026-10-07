@@ -1,15 +1,27 @@
-﻿# Invoke-OllamaGenerate.ps1 - chiamata locale a Ollama /api/generate (best-effort).
-# Convenzioni allineate a mcp/ollama-sidecar e scripts/ralph/ralph_gen.py:
-#   OLLAMA_URL (default http://localhost:11434), OLLAMA_MODEL (default qwen3-coder:30b),
-#   OLLAMA_TIMEOUT (secondi, default 120). Tra env e default si consulta models.json
-#   (progetto > libreria, vedi Resolve-ModelsConfig.ps1).
+# Invoke-OllamaGenerate.ps1 - chiamata locale al provider LLM (best-effort).
+# Nome file, nome funzione e parametri restano quelli storici; il corpo delega a
+# scripts/lib/_llm.ps1, che sceglie provider e trasporto (Ollama /api/generate
+# oppure LM Studio /v1/chat/completions).
+#   LLM_PROVIDER, OLLAMA_URL/OLLAMA_MODEL, LMSTUDIO_URL/LMSTUDIO_MODEL,
+#   OLLAMA_TIMEOUT (secondi, default 120, vale per entrambi i provider).
+# Tra env e default si consulta models.json (progetto > libreria).
 
 # Riusa Resolve-RalphRefPath per Build-OllamaContext (doppio dot-source innocuo).
 . (Join-Path $PSScriptRoot 'Expand-RalphPrompt.ps1')
 . (Join-Path $PSScriptRoot 'Resolve-ModelsConfig.ps1')
 
+# _llm.ps1 nel progetto consumer e' distribuito qui accanto da sync-ralph; nel
+# repo della libreria vive in scripts/lib/. Ricerca a 2 candidati: questo file
+# non puo' dot-sourciare fuori da ralph/lib/ una volta copiato nel progetto.
+foreach ($cand in @(
+    (Join-Path $PSScriptRoot '_llm.ps1'),
+    (Join-Path $PSScriptRoot '..\..\scripts\lib\_llm.ps1')
+)) {
+    if (Test-Path $cand -PathType Leaf) { . $cand; break }
+}
+
 function Invoke-OllamaGenerate {
-    # Ritorna il testo generato, o $null su qualunque errore (Ollama offline,
+    # Ritorna il testo generato, o $null su qualunque errore (provider offline,
     # timeout, modello mancante). Mai eccezioni: il chiamante degrada con warning.
     param(
         [Parameter(Mandatory = $true)]
@@ -20,39 +32,16 @@ function Invoke-OllamaGenerate {
         [int]$TimeoutSec = 0
     )
 
-    if ($Model -eq '' -or $Url -eq '') {
-        $cfg = Get-ModelsConfig -ProjectDir (Get-Location).Path
-        if ($Model -eq '') {
-            $Model = if ($env:OLLAMA_MODEL) { $env:OLLAMA_MODEL }
-                     elseif ($cfg.OllamaModel) { $cfg.OllamaModel }
-                     else { 'qwen3-coder:30b' }
-        }
-        if ($Url -eq '') {
-            $Url = if ($env:OLLAMA_URL) { $env:OLLAMA_URL }
-                   elseif ($cfg.OllamaUrl) { $cfg.OllamaUrl }
-                   else { 'http://localhost:11434' }
-        }
-    }
-    if ($TimeoutSec -le 0) {
-        $TimeoutSec = if ($env:OLLAMA_TIMEOUT -match '^\d+$') { [int]$env:OLLAMA_TIMEOUT } else { 120 }
+    if (-not (Get-Command Invoke-LlmGenerate -ErrorAction SilentlyContinue)) {
+        Write-Verbose '[Invoke-OllamaGenerate] _llm.ps1 non trovato'
+        return $null
     }
 
-    try {
-        # num_ctx alto: Build-OllamaContext inietta fino a 24000 char di contesto
-        # nel prompt; col default Ollama (4096) verrebbe troncato in silenzio.
-        $payload = @{ model = $Model; prompt = $Prompt; stream = $false; options = @{ num_ctx = 16384 } } |
-            ConvertTo-Json -Compress -Depth 4
-        # Body in byte UTF-8 espliciti: Invoke-RestMethod su PS 5.1 altrimenti
-        # invia le stringhe con charset di default e corrompe i non-ASCII.
-        $bytes = [System.Text.Encoding]::UTF8.GetBytes($payload)
-        $resp = Invoke-RestMethod -Method Post -Uri ($Url.TrimEnd('/') + '/api/generate') `
-            -ContentType 'application/json; charset=utf-8' -Body $bytes -TimeoutSec $TimeoutSec
-        $text = [string]$resp.response
-        if ($text -and $text.Trim()) { return $text.Trim() }
-        return $null
-    } catch {
-        return $null
-    }
+    # num_ctx alto: Build-OllamaContext inietta fino a 24000 char di contesto nel
+    # prompt; col default Ollama (4096) verrebbe troncato in silenzio. Su lmstudio
+    # e' load-time e il payload builder lo scarta.
+    return Invoke-LlmGenerate -Prompt $Prompt -ProjectDir (Get-Location).Path `
+        -Model $Model -Url $Url -TimeoutSec $TimeoutSec -NumCtx 16384
 }
 
 function Build-OllamaContext {

@@ -1,4 +1,4 @@
-﻿# Ralph - Loop autonomo di sviluppo
+# Ralph - Loop autonomo di sviluppo
 # Uso: .\ralph.ps1 -Iterations 10 [-Runner claude|cursor] [-ProjectDir "C:\path\al\progetto"] [-Json]
 #
 # -Json   Emette eventi NDJSON su stdout per iterazione; log umani su stderr.
@@ -183,6 +183,12 @@ tecniche rilevanti, problemi aperti. Rispondi SOLO con il riepilogo, senza pream
 code fence.
 "@
         $summary = Invoke-OllamaGenerate -Prompt $postPrompt
+        # Gate minimo prima di toccare la memoria (regola in docs/promptops-ollama-arch.md):
+        # una risposta di servizio ("Non ho abbastanza contesto.") non deve finire in sprint.md.
+        if ($summary -and $summary.Trim().Length -lt 40) {
+            Log "[Post-step] Riepilogo Ollama troppo corto ($($summary.Trim().Length) char) — non scritto in sprint.md." "Yellow"
+            $summary = $null
+        }
         if ($summary) {
             $sprintPath = Join-Path $ProjectDir ".claude\memory\sprint.md"
             $sprintDir  = Split-Path -Parent $sprintPath

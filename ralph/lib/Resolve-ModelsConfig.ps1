@@ -1,4 +1,4 @@
-﻿# Resolve-ModelsConfig.ps1 - lettura di models.json (globale + override progetto).
+# Resolve-ModelsConfig.ps1 - lettura di models.json (globale + override progetto).
 # Precedenza complessiva (applicata dai chiamanti): parametro esplicito > env var >
 # <progetto>/.claude/models.json > <claude-libs>/models.json > default hardcoded.
 # Questo file copre solo i due livelli file: merge per chiave, fail-silent
@@ -16,8 +16,11 @@ function Read-ModelsConfigFile {
 }
 
 function Get-ModelsConfig {
-    # Ritorna una hashtable @{ ClaudeModel = ...; OllamaModel = ...; OllamaUrl = ... }
-    # con i valori risolti dai file (progetto > libreria); chiavi assenti -> $null.
+    # Ritorna una hashtable con i valori risolti dai file (progetto > libreria);
+    # chiavi assenti -> $null. Le chiavi si aggiungono, non si rinominano: i
+    # consumatori leggono per nome, quindi estendere è a impatto zero.
+    #   ClaudeModel, OllamaModel, OllamaUrl, OllamaKeepAlive,
+    #   Provider, LmStudioModel, LmStudioUrl, LmStudioContextLength, LmStudioTtlSeconds
     param(
         [string]$ProjectDir = '',
         [string]$ClaudeLibsPath = ''
@@ -32,14 +35,29 @@ function Get-ModelsConfig {
     # Fallback al clone canonico se lo script gira da una copia senza models.json.
     $candidates += (Join-Path $HOME '.claude\claude-libs\models.json')
 
-    $result = @{ ClaudeModel = $null; OllamaModel = $null; OllamaUrl = $null }
+    $result = @{
+        ClaudeModel           = $null
+        OllamaModel           = $null
+        OllamaUrl             = $null
+        OllamaKeepAlive       = $null
+        Provider              = $null
+        LmStudioModel         = $null
+        LmStudioUrl           = $null
+        LmStudioContextLength = $null
+        LmStudioTtlSeconds    = $null
+    }
     foreach ($path in $candidates) {
         $cfg = Read-ModelsConfigFile -Path $path
         if ($null -eq $cfg) { continue }
-        if (-not $result.ClaudeModel -and $cfg.claude.model) { $result.ClaudeModel = [string]$cfg.claude.model }
-        if (-not $result.OllamaModel -and $cfg.ollama.model) { $result.OllamaModel = [string]$cfg.ollama.model }
-        if (-not $result.OllamaUrl   -and $cfg.ollama.url)   { $result.OllamaUrl   = [string]$cfg.ollama.url }
-        if ($result.ClaudeModel -and $result.OllamaModel -and $result.OllamaUrl) { break }
+        if (-not $result.ClaudeModel     -and $cfg.claude.model)          { $result.ClaudeModel     = [string]$cfg.claude.model }
+        if (-not $result.OllamaModel     -and $cfg.ollama.model)          { $result.OllamaModel     = [string]$cfg.ollama.model }
+        if (-not $result.OllamaUrl       -and $cfg.ollama.url)            { $result.OllamaUrl       = [string]$cfg.ollama.url }
+        if (-not $result.OllamaKeepAlive -and $cfg.ollama.keepAlive)      { $result.OllamaKeepAlive = [string]$cfg.ollama.keepAlive }
+        if (-not $result.Provider        -and $cfg.llm.provider)          { $result.Provider        = [string]$cfg.llm.provider }
+        if (-not $result.LmStudioModel   -and $cfg.lmstudio.model)        { $result.LmStudioModel   = [string]$cfg.lmstudio.model }
+        if (-not $result.LmStudioUrl     -and $cfg.lmstudio.url)          { $result.LmStudioUrl     = [string]$cfg.lmstudio.url }
+        if (-not $result.LmStudioContextLength -and $cfg.lmstudio.contextLength) { $result.LmStudioContextLength = [int]$cfg.lmstudio.contextLength }
+        if ($null -eq $result.LmStudioTtlSeconds -and $null -ne $cfg.lmstudio.ttlSeconds) { $result.LmStudioTtlSeconds = [int]$cfg.lmstudio.ttlSeconds }
     }
     return $result
 }

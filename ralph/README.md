@@ -1,4 +1,4 @@
-﻿# Ralph — Sviluppo Autonomo Iterativo
+# Ralph — Sviluppo Autonomo Iterativo
 
 Sistema di sviluppo autonomo che esegue Claude in loop, implementando una user story per volta fino al completamento del PRD.
 
@@ -168,7 +168,7 @@ Variabili d'ambiente opzionali:
 
 - `RALPH_RUNNER` — `claude` o `cursor` (fallback in modalità `-Json` se `-Runner` omesso)
 - `RALPH_PREPOST_RUNNER` — `ollama` | `claude` | `none` (fallback se `-PrePostRunner` omesso)
-- `RALPH_CLAUDE_MODEL` — modello Claude passato come `--model` alla CLI (default da `models.json`: `claude-opus-4-8`; senza valore si usa il modello di sessione)
+- `RALPH_CLAUDE_MODEL` — modello Claude passato come `--model` alla CLI (default da `models.json`: `claude-opus-5-5`; senza valore si usa il modello di sessione)
 - `RALPH_CURSOR_MODEL` — modello Cursor (default `composer-2.5`)
 - `RALPH_PYTHON` — path esplicito a `python.exe` 3.12+ (es. `%LOCALAPPDATA%\Programs\Python\Python312\python.exe`) se `python` nel PATH è una versione precedente
 - `CURSOR_API_KEY` — obbligatoria per runner `cursor` (o file `%USERPROFILE%\.cursor\cursor_api_key`, oppure `<progetto>\.claude\cursor.env`)
